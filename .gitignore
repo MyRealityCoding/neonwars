@@ -1,15 +1,29 @@
-# Compiled Object files
+# C++ objects and libs
+
 *.slo
 *.lo
 *.o
-
-# Compiled Dynamic libraries
+*.a
+*.la
+*.lai
 *.so
+*.dll
 *.dylib
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# Qt-es
 
-build-NeonWars-Desktop_Qt_5_2_1_GCC_64bit-Debug/
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*-build-*
+*build-*
+
+# QtCreator
+
+*.autosave

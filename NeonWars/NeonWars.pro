@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        neonwarsgame.cpp \
     ship.cpp \
     board.cpp
 
@@ -21,4 +20,4 @@ HEADERS  += neonwarsgame.h \
     ship.h \
     board.h
 
-FORMS +=
+
