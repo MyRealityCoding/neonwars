@@ -12,4 +12,9 @@
 *.la
 *.a
 
-build-NeonWars-Desktop_Qt_5_2_1_GCC_64bit-Debug/
+~*
+*~
+
+*.autosave
+**/*.pro.user.**
+build-*
