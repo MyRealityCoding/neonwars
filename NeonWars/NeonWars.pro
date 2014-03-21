@@ -13,6 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        neonwarsgame.cpp
+    form.cpp
 
-HEADERS  += neonwarsgame.h
+HEADERS  += \
+    form.h
+
+FORMS += \
+    form.ui
