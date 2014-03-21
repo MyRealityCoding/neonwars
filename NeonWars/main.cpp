@@ -15,5 +15,4 @@ int main(int argc, char *argv[])
     scene.addItem(item);
     view.show();
     return a.exec();
-
 }

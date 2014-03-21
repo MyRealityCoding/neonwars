@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT       += core gui
 TARGET = NeonWars
 TEMPLATE = app
-SOURCES += main.cpp
 RESOURCES += \
     resources.qrc
 QT       += core gui
