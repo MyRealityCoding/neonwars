@@ -13,6 +13,9 @@ signals:
 
 public slots:
 
+private:
+    Ship board[6][7] ;
+
 };
 
 #endif // BOARD_H
