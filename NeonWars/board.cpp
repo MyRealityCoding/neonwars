@@ -1,8 +1,16 @@
 #include "board.h"
 
-Board::Board()
+Board::Board(int rows, int columns)
+    : rows(rows), columns(columns)
 {
-
+    for (int x = 0;  x < columns; ++x)
+    {
+        for (int y = 0; y < rows; ++y)
+        {
+            Ship *ship = new Ship(NONE, NONE);
+            map.insert(x, QPair(y, ship));
+        }
+    }
 }
 
 void Board::paintEvent(QPaintEvent * q)
