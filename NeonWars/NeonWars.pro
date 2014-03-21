@@ -4,19 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT       += core gui
 TARGET = NeonWars
 TEMPLATE = app
+SOURCES += main.cpp
+RESOURCES += \
+    resources.qrc
+QT       += core gui
 
+OTHER_FILES += \
+    background.jpg
 
-SOURCES += main.cpp\
-    form.cpp
-
-HEADERS  += \
-    form.h
-
-FORMS += \
-    form.ui
