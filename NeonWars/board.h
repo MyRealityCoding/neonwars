@@ -1,8 +1,12 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+
 #include <QGraphicsObject>
 #include <QMultiMap>
+#include <QPaintEvent>
+
+#include <ship.h>
 
 enum NeighbourType
 {
@@ -24,7 +28,7 @@ public:
     Ship* getShip(const QPoint&);
     bool hasShip(const QPoint&);
     bool hasShip(const QPoint&, NeighbourType);
-    void add(Ship*, int columnIndex);
+    void add(ShipType, int columnIndex);
     void remove(const QPoint&);
     void paintEvent(QPaintEvent * q);
 signals:

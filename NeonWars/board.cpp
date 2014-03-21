@@ -13,12 +13,12 @@ void Board::paintEvent(QPaintEvent * q)
 Ship* Board::getShip(const QPoint &point, NeighbourType type)
 {
     // TODO
-    return nullptr;
+    return NULL;
 }
 
 Ship* Board::getShip(const QPoint &point)
 {
-    return nullptr;
+    return NULL;
 }
 
 bool Board::hasShip(const QPoint &point)
@@ -33,12 +33,12 @@ bool Board::hasShip(const QPoint &point, NeighbourType type)
     return false;
 }
 
-void Board::add(Ship *ship)
+void Board::add(ShipType, int columnIndex)
 {
     // TODO
 }
 
-void Board::remove(Ship *ship)
+void Board::remove(const QPoint&)
 {
     // TODO
 }

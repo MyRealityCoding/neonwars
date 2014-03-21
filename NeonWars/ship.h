@@ -14,12 +14,15 @@ enum ShipType {
     PHASER// Kills all Ships in diagonal
 };
 
-class Ship : public QGraphicsObjects
+class Ship : public QGraphicsObject
 
 {
     Q_OBJECT
 public:
-    explicit Ship(QWidget *parent = 0);
+    explicit Ship(Player p, ShipType t):player(p),type(t){
+        setType(type);
+    }
+    QRectF boundingRect() const ;
     void setType(ShipType);
 signals:
 
@@ -27,9 +30,7 @@ public slots:
 private:
     Player player;
     ShipType type;
-    QPixmap image;
-
-
+    QImage image;
 };
 
 
