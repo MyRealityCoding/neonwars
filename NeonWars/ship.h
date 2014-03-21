@@ -6,7 +6,7 @@
 enum Player {NONE,PLAYER1,PLAYER2};
 
 enum ShipType {
-    NONE , // EMPTY FIELD TYPE
+    EMPTY , // EMPTY FIELD TYPE
     NORMAL, // Does nothing
     LASER, // Kills all Ships beneath it
     BOMB, //Kills all neighbour Ships
@@ -19,9 +19,7 @@ class Ship : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    explicit Ship(Player p, ShipType t):player(p),type(t){
-        setType(type);
-    }
+    explicit Ship();
     QRectF boundingRect() const ;
     void setType(ShipType);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
