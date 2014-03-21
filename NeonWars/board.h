@@ -25,6 +25,7 @@ public:
     bool hasShip(const QPoint&, NeighbourType);
     void add(Ship*);
     void remove(Ship *);
+    void paintEvent(QPaintEvent * q);
 signals:
 
 public slots:

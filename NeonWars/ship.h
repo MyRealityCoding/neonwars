@@ -1,7 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 
-#include <QGraphicsObjects>
+#include <QGraphicsObject>
 
 enum Player { Player1,Player2};
 
