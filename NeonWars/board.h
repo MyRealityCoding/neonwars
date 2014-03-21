@@ -22,7 +22,7 @@ class Board : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    explicit Board();
+    explicit Board(int rows, int columns);
 
     Ship* getShip(const QPoint&, NeighbourType);
     Ship* getShip(const QPoint&);
@@ -30,12 +30,13 @@ public:
     bool hasShip(const QPoint&, NeighbourType);
     void add(ShipType, int columnIndex);
     void remove(const QPoint&);
-    void paintEvent(QPaintEvent * q);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 signals:
 
 public slots:
 
 private:
+    int rows, columns;
     QMultiMap<int, QPair<int, Ship*> > map;
 };
 

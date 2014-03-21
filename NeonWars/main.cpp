@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QGraphicsScene scene;
-    scene.setSceneRect(QRect(0, 0, 200, 200));
+    scene.setSceneRect(QRect(0, 0, 800, 600));
     QGraphicsView view(&scene);
     QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap(":BACKGROUND"));
 
