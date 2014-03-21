@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <QWidget>
+#include <ship.h>
 
 class board : public QWidget
 {
