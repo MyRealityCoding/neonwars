@@ -20,5 +20,5 @@ QRectF Ship::boundingRect() const{
 }
 
 void Ship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-    painter->
+
 }

@@ -6,7 +6,7 @@
 enum Player {NONE,PLAYER1,PLAYER2};
 
 enum ShipType {
-    NONE , // EMPTY FIELD TYPE
+    EMPTY , // EMPTY FIELD TYPE
     NORMAL, // Does nothing
     LASER, // Kills all Ships beneath it
     BOMB, //Kills all neighbour Ships

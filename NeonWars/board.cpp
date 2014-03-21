@@ -7,13 +7,13 @@ Board::Board(int rows, int columns)
     {
         for (int y = 0; y < rows; ++y)
         {
-            Ship *ship = new Ship(NONE, NONE);
-            map.insert(x, QPair(y, ship));
+            Ship *ship = new Ship(NONE, EMPTY);
+            map.insert(x, QPair<int, Ship*>(y, ship));
         }
     }
 }
 
-void Board::paintEvent(QPaintEvent * q)
+void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // TODO
 }
