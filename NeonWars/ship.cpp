@@ -1,4 +1,5 @@
 #include "ship.h"
+#include <QPainter>
 
 
 void Ship::setType(ShipType type){
@@ -16,4 +17,8 @@ void Ship::setType(ShipType type){
 }
 QRectF Ship::boundingRect() const{
    return QRectF(QPoint(this->x(),this->y()),QPoint(this->x()+51,this->y()+51));
+}
+
+void Ship::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    painter->
 }
