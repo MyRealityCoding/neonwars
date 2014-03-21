@@ -3,7 +3,7 @@
 
 #include <QGraphicsObject>
 
-enum Player { Player1,Player2};
+enum Player {NONE,PLAYER1,PLAYER2};
 
 enum ShipType {
     NONE , // EMPTY FIELD TYPE
@@ -24,6 +24,7 @@ public:
     }
     QRectF boundingRect() const ;
     void setType(ShipType);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 signals:
 
 public slots:
