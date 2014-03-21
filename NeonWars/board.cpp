@@ -1,10 +1,11 @@
 #include "board.h"
 
-board::board(QWidget *parent) :
-    QWidget(parent)
+Board::Board()
 {
-}
-void board::paintEvent(QPaintEvent * q){
 
+}
+
+void Board::paintEvent(QPaintEvent * q)
+{
 
 }

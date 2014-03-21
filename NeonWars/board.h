@@ -1,20 +1,20 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include <QWidget>
+#include <QGraphicsObject>
 
-class board : public QWidget
+class Board : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    explicit board(QWidget *parent = 0);
+    explicit Board();
 
 signals:
 
 public slots:
 
 private:
-    Ship board[6][7] ;
+    QMultiMap<int, QPair<int, Ship*> > map;
 
 };
 
