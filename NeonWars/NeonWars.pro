@@ -16,8 +16,7 @@ SOURCES += main.cpp\
     ship.cpp \
     board.cpp
 
-HEADERS  += neonwarsgame.h \
-    ship.h \
+HEADERS  += ship.h \
     board.h
 
 
