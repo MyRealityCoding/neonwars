@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <QGraphicsObject>
+#include <QMultiMap>
 
 enum NeighbourType
 {
@@ -23,8 +24,8 @@ public:
     Ship* getShip(const QPoint&);
     bool hasShip(const QPoint&);
     bool hasShip(const QPoint&, NeighbourType);
-    void add(Ship*);
-    void remove(Ship *);
+    void add(Ship*, int columnIndex);
+    void remove(const QPoint&);
     void paintEvent(QPaintEvent * q);
 signals:
 
@@ -32,8 +33,6 @@ public slots:
 
 private:
     QMultiMap<int, QPair<int, Ship*> > map;
-
-    void move(Ship*, const QPoint&);
 };
 
 #endif // BOARD_H
