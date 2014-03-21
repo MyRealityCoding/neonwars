@@ -30,7 +30,7 @@ public:
     bool hasShip(const QPoint&, NeighbourType);
     void add(ShipType, int columnIndex);
     void remove(const QPoint&);
-    void paintEvent(QPaintEvent * q);
+
 signals:
 
 public slots:
