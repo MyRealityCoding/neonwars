@@ -42,10 +42,10 @@ void Ship::setType(Ship::Type type){
 
 void Ship::paint(const int &x, const int &y, const int &size, QPainter *painter)
 {
-    //if(type != Ship::NONE)
-    //{
-       painter->drawImage(QRect(x, y, size, size),image);
-    //}
+    if(type != Ship::NONE)
+    {
+       painter->drawImage(QRect(x, y, size, size), image);
+    }
 }
 
 void Ship::triggerBehavior(Board *board)

@@ -25,11 +25,16 @@ int main(int argc, char *argv[])
 
     scene.addItem(item);
 
-    Board board(Settings::ROW_COUNT, Settings::COLUMN_COUNT);
-
+    Board board;
+    board.add(Ship::BOMB, 1);
+    board.add(Ship::BOMB, 1);
+    board.add(Ship::NORMAL, 1);
+    board.add(Ship::PHASER, 3);
+    board.add(Ship::PHASER, 3);
+    board.add(Ship::BOMB, 0);
     scene.addItem(&board);
 
-    view.setStyleSheet(":STYLESHEET");
+    //view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();
 }

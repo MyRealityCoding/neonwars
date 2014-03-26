@@ -4,15 +4,21 @@
 #include <QBrush>
 #include <iostream>
 
-Board::Board(int rows, int columns)
+Board::Board()
 {
     for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
     {
         for (int y = 0; y < Settings::ROW_COUNT; ++y)
         {
             Ship *ship = new Ship();
-            map[x][y] = ship;
+
+            if (validIndex(x, y))
+            {
+                _map[x][y] = ship;
+            }
         }
+
+        _rows[x] = 0;
     }
 }
 
@@ -72,10 +78,9 @@ Ship* Board::getShip(const int &x, const int &y, Neighbour::Type type)
     int indexX = transformIndexX(x, type);
     int indexY = transformIndexY(y, type);
 
-    if (indexX >= 0 && indexX < Settings::COLUMN_COUNT &&
-        indexY >= 0 && indexY < Settings::ROW_COUNT)
+    if (validIndex(indexX, indexY))
     {
-        return map[indexX][indexY];
+        return _map[indexX][indexY];
     }
     else
     {
@@ -98,9 +103,24 @@ bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
     return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
-void Board::add(Ship::Type, int columnIndex)
+bool Board::add(Ship::Type type, int columnIndex)
 {
+    if (validIndexX(columnIndex))
+    {
+        int indexY = Settings::ROW_COUNT - _rows[columnIndex] - 1;
 
+        if (validIndexY(indexY))
+        {
+            _rows[columnIndex]++;
+            _map[columnIndex][indexY]->setType(type);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return false;
 }
 
 void Board::remove(const int &x, const int &y)
@@ -111,10 +131,43 @@ void Board::remove(const int &x, const int &y)
 
 int Board::transformIndexX(const int &x, Neighbour::Type type)
 {
+    if (type == Neighbour::LEFT || type == Neighbour::LOWER_LEFT || type == Neighbour::UPPER_LEFT)
+    {
+        return x - 1;
+    }
+    else if (type == Neighbour::RIGHT || type == Neighbour::LOWER_RIGHT || type == Neighbour::UPPER_RIGHT)
+    {
+        return x + 1;
+    }
+
     return x;
 }
 
 int Board::transformIndexY(const int &y, Neighbour::Type type)
 {
+    if (type == Neighbour::UPPER || type == Neighbour::UPPER_LEFT || type == Neighbour::UPPER_RIGHT)
+    {
+        return y - 1;
+    }
+    else if (type == Neighbour::LOWER || type == Neighbour::LOWER_LEFT || type == Neighbour::LOWER_RIGHT)
+    {
+        return y + 1;
+    }
+
     return y;
+}
+
+bool Board::validIndex(const int &indexX, const int &indexY) const
+{
+    return validIndexX(indexX) && validIndexY(indexY);
+}
+
+bool Board::validIndexX(const int &indexX) const
+{
+    return indexX >= 0 && indexX < Settings::COLUMN_COUNT;
+}
+
+bool Board::validIndexY(const int &indexY) const
+{
+    return indexY >= 0 && indexY < Settings::ROW_COUNT;
 }

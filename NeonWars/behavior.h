@@ -7,13 +7,13 @@ class Ship;
 class Behavior
 {
 public:
-    virtual void trigger(Board *board, Ship *target) = 0;
+    virtual void trigger(Board *board, const int&, const int&) = 0;
 };
 
 class SimpleBehavior : public Behavior
 {
 public:
-    void trigger(Board *board, Ship *target);
+    void trigger(Board *board, const int&, const int&);
 };
 
 #endif // BEHAVIOR_H

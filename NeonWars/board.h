@@ -27,29 +27,37 @@ namespace Neighbour {
 class Board : public QGraphicsObject
 {
     Q_OBJECT
+
+private:
+    Ship* _map[Settings::COLUMN_COUNT][Settings::ROW_COUNT];
+    int _rows[Settings::COLUMN_COUNT];
+
 public:
-    explicit Board(int rows, int columns);
+    Board();
 
     Ship* getShip(const int &x, const int &y, Neighbour::Type);
     Ship* getShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y, Neighbour::Type);
-    void add(Ship::Type, int columnIndex);
+    bool add(Ship::Type, int columnIndex);
     void remove(const int &x, const int &y);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     int getWidth() const;
     int getHeight() const;
     int getCellSize() const;
+
 signals:
 
 public slots:
 
 private:
-    Ship* map[Settings::COLUMN_COUNT][Settings::ROW_COUNT];
 
     int transformIndexX(const int&, Neighbour::Type);
     int transformIndexY(const int&, Neighbour::Type);
+    bool validIndex(const int&, const int&) const;
+    bool validIndexX(const int&) const;
+    bool validIndexY(const int&) const;
 };
 
 #endif // BOARD_H
