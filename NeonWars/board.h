@@ -8,6 +8,7 @@
 #include <QPainter>
 #include "settings.h"
 #include "ship.h"
+#include <vector>
 
 namespace Neighbour {
 
@@ -46,7 +47,7 @@ public:
     int getWidth() const;
     int getHeight() const;
     int getCellSize() const;
-
+    std::vector<Ship*> getNeighbours(const int&, const int&);
 signals:
 
 public slots:
