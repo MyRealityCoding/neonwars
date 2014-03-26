@@ -2,6 +2,9 @@
 #define SHIP_H
 
 #include <QGraphicsObject>
+#include <behavior.h>
+
+class Board;
 
 namespace Player {
 
@@ -18,7 +21,7 @@ class Ship : public QObject
 public:
 
     enum Type {
-        EMPTY , // EMPTY FIELD TYPE
+        NONE , // EMPTY FIELD TYPE
         NORMAL, // Does nothing
         LASER, // Kills all Ships beneath it
         BOMB, //Kills all neighbour Ships
@@ -27,18 +30,26 @@ public:
     };
 
     Ship();
+    ~Ship();
     void setType(Ship::Type);
-    void paint(const int&, const int&, const int&, QPainter *painter);
+    void paint(const int&, const int&, const int&, QPainter*);
+    void triggerBehavior(Board*);
 
+    Ship::Type getType() const;
+    Player::Type getPlayer() const;
 
 signals:
 
 public slots:
 
 private:
+
+    void setBehavior(Behavior*);
+
     Player::Type player;
     Ship::Type type;
     QImage image;
+    Behavior *behavior;
 };
 
 

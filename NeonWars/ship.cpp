@@ -1,19 +1,24 @@
 #include "ship.h"
 #include <QPainter>
 #include <iostream>
+#include "board.h"
 
 Ship::Ship()
-    : player(Player::NONE), type(Ship::EMPTY)
+    : player(Player::NONE), type(Ship::NONE), behavior(NULL)
 {
     image = QImage(":NORMAL");
+    setBehavior(new SimpleBehavior);
+}
 
-    std::cout << image.isNull() << std::endl;
+Ship::~Ship()
+{
+    setBehavior(NULL);
 }
 
 void Ship::setType(Ship::Type type){
 
     switch (type){
-        case Ship::EMPTY:
+        case Ship::NONE:
             break;
         case Ship::NORMAL:
             image = QImage(":NORMAL");
@@ -37,9 +42,36 @@ void Ship::setType(Ship::Type type){
 
 void Ship::paint(const int &x, const int &y, const int &size, QPainter *painter)
 {
-    //if(type != Ship::EMPTY)
-    //{
-       //std::cout << (painter) << std::endl;
-       //painter->drawImage(QRect(x, y, size, size),image);
-    //}
+    if(type != Ship::NONE)
+    {
+       painter->drawImage(QRect(x, y, size, size),image);
+    }
+}
+
+void Ship::triggerBehavior(Board *board)
+{
+    if (behavior != NULL)
+    {
+        behavior->trigger(board, this);
+    }
+}
+
+Ship::Type  Ship::getType() const
+{
+    return type;
+}
+
+Player::Type Ship::getPlayer() const
+{
+    return player;
+}
+
+void Ship::setBehavior(Behavior *newBehavior)
+{
+    if (behavior != NULL)
+    {
+        delete behavior;
+    }
+
+    behavior = newBehavior;
 }

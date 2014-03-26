@@ -12,6 +12,7 @@
 namespace Neighbour {
 
     enum Type {
+        NONE,
         UPPER,
         LOWER,
         LEFT,

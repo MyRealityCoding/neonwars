@@ -71,27 +71,25 @@ Ship* Board::getShip(const int &x, const int &y, Neighbour::Type type)
 
 Ship* Board::getShip(const int &x, const int &y)
 {
-    return NULL;
+    return getShip(x, y, Neighbour::NONE);
 }
 
 bool Board::hasShip(const int &x, const int &y)
 {
-    // TODO
-    return false;
+    return hasShip(x, y, Neighbour::NONE);
 }
 
 bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
 {
-    // TODO
-    return false;
+    return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
 void Board::add(Ship::Type, int columnIndex)
 {
-    // TODO
+
 }
 
 void Board::remove(const int &x, const int &y)
 {
-    // TODO
+
 }

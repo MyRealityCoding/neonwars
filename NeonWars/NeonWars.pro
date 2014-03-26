@@ -27,9 +27,11 @@ OTHER_FILES += \
 SOURCES += main.cpp\
     ship.cpp \
     board.cpp \
-    preview.cpp
+    preview.cpp \
+    behavior.cpp
 
 HEADERS  += ship.h \
     board.h \
     settings.h \
-    preview.h
+    preview.h \
+    behavior.h
