@@ -79,6 +79,11 @@ std::vector<QPoint> Board::getNeighbours(const int &x, const int &y)
     return std::vector<QPoint>();
 }
 
+std::vector<QPoint> Board::getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to)
+{
+    return std::vector<QPoint>();
+}
+
 Ship* Board::getShip(const int &x, const int &y, Neighbour::Type type)
 {
     int indexX = transformIndexX(x, type);

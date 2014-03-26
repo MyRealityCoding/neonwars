@@ -48,6 +48,25 @@ public:
     int getHeight() const;
     int getCellSize() const;
     std::vector<QPoint> getNeighbours(const int&, const int&);
+
+    /* Returns all positions in the given range.
+     *
+     * Example:
+     *
+     * std::vector<QPoint> diagonal1 = getShips(1, 1, Neighbour::UPPER_LEFT, Neighbour::LOWER_RIGHT);
+     * std::vector<QPoint> diagonal2 = getShips(1, 1, Neighbour::LOWER_LEFT, Neighbour::UPPER_RIGHT);
+     * std::vector<QPoint> vertical = getShips(1, 1, Neighbour::UPPER, Neighbour::LOWER);
+     * std::vector<QPoint> horizontal = getShips(1, 1, Neighbour::LEFT, Neighbour::RIGHT);
+     *
+     * RETURNS only LEFT and UPPER_LEFT:
+     * std::vector<QPoint> crap = getShips(1, 1, Neighbour::LEFT, Neighbour::UPPER_LEFT);
+     *
+     * RETURNS only UPPER and RIGHT:
+     * std::vector<QPoint> crap = getShips(1, 1, Neighbour::UPPER, Neighbour::RIGHT);
+     *
+     * etc.
+     */
+    std::vector<QPoint> getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to);
 signals:
 
 public slots:
