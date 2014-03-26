@@ -21,19 +21,19 @@ class Ship : public QObject
 public:
 
     enum Type {
-        NONE , // EMPTY FIELD TYPE
+        NONE ,  // EMPTY FIELD TYPE
         NORMAL, // Does nothing
-        LASER, // Kills all Ships beneath it
-        BOMB, //Kills all neighbour Ships
+        LASER,  // Kills all Ships beneath it
+        BOMB,   //Kills all neighbour Ships
         ROCKET, // Kills all neighbour enemy Ships
-        PHASER// Kills all Ships in diagonal
+        PHASER  // Kills all Ships in diagonal
     };
 
     Ship();
     ~Ship();
     void setType(Ship::Type);
     void paint(const int&, const int&, const int&, QPainter*);
-    void triggerBehavior(Board*);
+    void triggerBehavior(Board*, const int&, const int&);
 
     Ship::Type getType() const;
     Player::Type getPlayer() const;

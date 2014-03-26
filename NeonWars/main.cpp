@@ -32,6 +32,10 @@ int main(int argc, char *argv[])
     board.add(Ship::PHASER, 3);
     board.add(Ship::PHASER, 3);
     board.add(Ship::BOMB, 0);
+
+    board.remove(1);
+    board.remove(1);
+    board.remove(1);
     scene.addItem(&board);
 
     //view.setStyleSheet(":STYLESHEET");

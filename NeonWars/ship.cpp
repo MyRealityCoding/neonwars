@@ -7,7 +7,7 @@ Ship::Ship()
     : player(Player::NONE), type(Ship::NONE), behavior(NULL)
 {
     image = QImage(":NORMAL");
-    setBehavior(new SimpleBehavior);
+    setBehavior(new NormalBehavior);
 }
 
 Ship::~Ship()
@@ -48,11 +48,11 @@ void Ship::paint(const int &x, const int &y, const int &size, QPainter *painter)
     }
 }
 
-void Ship::triggerBehavior(Board *board)
+void Ship::triggerBehavior(Board *board, const int &x, const int &y)
 {
     if (behavior != NULL)
     {
-        behavior->trigger(board, this);
+        behavior->trigger(board, x, y);
     }
 }
 

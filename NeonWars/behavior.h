@@ -10,7 +10,7 @@ public:
     virtual void trigger(Board *board, const int&, const int&) = 0;
 };
 
-class SimpleBehavior : public Behavior
+class NormalBehavior : public Behavior
 {
 public:
     void trigger(Board *board, const int&, const int&);

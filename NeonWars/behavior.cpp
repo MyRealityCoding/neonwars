@@ -2,7 +2,7 @@
 #include "ship.h"
 #include "board.h"
 
-void SimpleBehavior::trigger(Board *board, const int &x, const int &y)
+void NormalBehavior::trigger(Board *board, const int &x, const int &y)
 {
 
 }

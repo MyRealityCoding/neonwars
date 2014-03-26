@@ -103,16 +103,18 @@ bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
     return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
-bool Board::add(Ship::Type type, int columnIndex)
+bool Board::add(Ship::Type type, int indexX)
 {
-    if (validIndexX(columnIndex))
+    if (validIndexX(indexX))
     {
-        int indexY = Settings::ROW_COUNT - _rows[columnIndex] - 1;
+        int indexY = Settings::ROW_COUNT - _rows[indexX] - 1;
 
         if (validIndexY(indexY))
         {
-            _rows[columnIndex]++;
-            _map[columnIndex][indexY]->setType(type);
+            _rows[indexX]++;
+            _map[indexX][indexY]->setType(type);
+            _map[indexX][indexY]->triggerBehavior(this, indexX, indexY);
+            return true;
         }
         else
         {
@@ -123,9 +125,25 @@ bool Board::add(Ship::Type type, int columnIndex)
     return false;
 }
 
-void Board::remove(const int &x, const int &y)
+bool Board::remove(const int &indexX)
 {
+    if (validIndexX(indexX))
+    {
+        int indexY = Settings::ROW_COUNT - _rows[indexX];
 
+        if (validIndexY(indexY))
+        {
+            _rows[indexX]--;
+            _map[indexX][indexY]->setType(Ship::NONE);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return false;
 }
 
 
