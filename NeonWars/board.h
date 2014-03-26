@@ -47,7 +47,7 @@ public:
     int getWidth() const;
     int getHeight() const;
     int getCellSize() const;
-    std::vector<Ship*> getNeighbours(const int&, const int&);
+    std::vector<QPoint> getNeighbours(const int&, const int&);
 signals:
 
 public slots:

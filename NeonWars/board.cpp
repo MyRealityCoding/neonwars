@@ -74,9 +74,9 @@ int Board::getHeight() const
     return getCellSize() * Settings::ROW_COUNT;
 }
 
-std::vector<Ship*> Board::getNeighbours(const int &x, const int &y)
+std::vector<QPoint> Board::getNeighbours(const int &x, const int &y)
 {
-    return std::vector<Ship*>();
+    return std::vector<QPoint>();
 }
 
 Ship* Board::getShip(const int &x, const int &y, Neighbour::Type type)
@@ -150,19 +150,23 @@ bool Board::remove(const int &indexX, const int &indexY)
         // Remove the current element
         _rows[indexX]--;
 
+        int localIndexY = indexY;
         int startY = indexY;
 
         // Swap everything 1 row down. Reason: Gravity :)
-        while (indexY >= 0 && _map[indexX][indexY]->getType() != Ship::NONE)
+        while (localIndexY >= 0 && _map[indexX][localIndexY]->getType() != Ship::NONE)
         {
-            if (indexY == startY)
+            if (localIndexY == startY)
             {
-                //_map[indexX][indexY]->getType();
+                _map[indexX][localIndexY]->setType(Ship::NONE);
             }
             else
             {
-
+                _map[indexX][localIndexY + 1]->setType(_map[indexX][localIndexY]->getType());
+                _map[indexX][localIndexY]->setType(Ship::NONE);
             }
+
+            localIndexY--;
         }
     }
 
