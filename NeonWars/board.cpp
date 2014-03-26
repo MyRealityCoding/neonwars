@@ -142,7 +142,13 @@ bool Board::remove(const int &indexX, const int &indexY)
     }
     else
     {
+        // Remove the current element
+        _rows[indexX]--;
 
+        while (indexY >= 0 && _map[indexX][indexY]->getType() != Ship::NONE)
+        {
+
+        }
     }
 
     return false;

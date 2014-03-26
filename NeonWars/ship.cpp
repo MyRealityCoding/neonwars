@@ -19,6 +19,7 @@ void Ship::setType(Ship::Type type){
 
     switch (type){
         case Ship::NONE:
+            player = Player::NONE;
             break;
         case Ship::NORMAL:
             image = QImage(":NORMAL");
