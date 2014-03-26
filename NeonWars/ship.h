@@ -32,6 +32,7 @@ public:
     Ship();
     ~Ship();
     void setType(Ship::Type);
+    void setPlayer(Player::Type);
     void paint(const int&, const int&, const int&, QPainter*);
     void triggerBehavior(Board*, const int&, const int&);
 

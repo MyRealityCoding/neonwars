@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file alias="BOMB">Resources/ship-bomb.png</file>
         <file alias="LASER">Resources/ship-laser.png</file>
-        <file alias="MISSLE">Resources/ship-missle.png</file>
+        <file alias="ROCKET">Resources/ship-missle.png</file>
         <file alias="NORMAL">Resources/ship-normal.png</file>
         <file alias="PHASER">Resources/ship-phaser.png</file>
         <file alias="BACKGROUND">Resources/background.jpg</file>

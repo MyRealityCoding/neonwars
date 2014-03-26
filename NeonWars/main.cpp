@@ -26,16 +26,13 @@ int main(int argc, char *argv[])
     scene.addItem(item);
 
     Board board;
-    board.add(Ship::BOMB, 1);
-    board.add(Ship::BOMB, 1);
-    board.add(Ship::NORMAL, 1);
-    board.add(Ship::PHASER, 3);
-    board.add(Ship::PHASER, 3);
-    board.add(Ship::BOMB, 0);
+    board.add(Ship::BOMB, Player::PLAYER1, 1);
+    board.add(Ship::BOMB, Player::PLAYER1, 1);
+    board.add(Ship::NORMAL, Player::PLAYER2, 1);
+    board.add(Ship::PHASER, Player::PLAYER2, 3);
+    board.add(Ship::PHASER, Player::PLAYER2, 3);
+    board.add(Ship::BOMB, Player::PLAYER1, 0);
 
-    board.remove(1);
-    board.remove(1);
-    board.remove(1);
     scene.addItem(&board);
 
     //view.setStyleSheet(":STYLESHEET");

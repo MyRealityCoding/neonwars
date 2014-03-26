@@ -24,6 +24,7 @@ Board::Board()
 
 void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    painter->setRenderHint(QPainter::Antialiasing);
     painter->setOpacity(0.7);
     painter->fillRect(QRect(Settings::GLOBAL_PADDING, Settings::WINDOW_HEIGHT - getHeight() - Settings::GLOBAL_PADDING, getWidth(), getHeight()), Qt::SolidPattern);
 
@@ -103,7 +104,7 @@ bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
     return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
-bool Board::add(Ship::Type type, int indexX)
+bool Board::add(Ship::Type type, Player::Type player, int indexX)
 {
     if (validIndexX(indexX))
     {
@@ -113,6 +114,7 @@ bool Board::add(Ship::Type type, int indexX)
         {
             _rows[indexX]++;
             _map[indexX][indexY]->setType(type);
+            _map[indexX][indexY]->setPlayer(player);
             _map[indexX][indexY]->triggerBehavior(this, indexX, indexY);
             return true;
         }
@@ -125,22 +127,22 @@ bool Board::add(Ship::Type type, int indexX)
     return false;
 }
 
-bool Board::remove(const int &indexX)
+bool Board::remove(const int &indexX, const int &indexY)
 {
-    if (validIndexX(indexX))
+    // Validate index
+    if (!validIndex(indexX, indexY))
     {
-        int indexY = Settings::ROW_COUNT - _rows[indexX];
+        return false;
+    }
 
-        if (validIndexY(indexY))
-        {
-            _rows[indexX]--;
-            _map[indexX][indexY]->setType(Ship::NONE);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    // Check if it's the top element, otherwise iterate
+    if (indexY == 0 || getShip(indexX, indexY, Neighbour::UPPER)->getType() == Ship::NONE)
+    {
+        removeByColumn(indexX);
+    }
+    else
+    {
+
     }
 
     return false;
@@ -188,4 +190,25 @@ bool Board::validIndexX(const int &indexX) const
 bool Board::validIndexY(const int &indexY) const
 {
     return indexY >= 0 && indexY < Settings::ROW_COUNT;
+}
+
+bool Board::removeByColumn(const int &indexX)
+{
+    if (validIndexX(indexX))
+    {
+        int indexY = Settings::ROW_COUNT - _rows[indexX];
+
+        if (validIndexY(indexY))
+        {
+            _rows[indexX]--;
+            _map[indexX][indexY]->setType(Ship::NONE);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return false;
 }

@@ -40,10 +40,25 @@ void Ship::setType(Ship::Type type){
     this->type = type;
 }
 
+void Ship::setPlayer(Player::Type type)
+{
+    player = type;
+}
+
 void Ship::paint(const int &x, const int &y, const int &size, QPainter *painter)
 {
     if(type != Ship::NONE)
     {
+       QColor color(Settings::COLOR_PLAYER_1);
+
+       if (player == Player::PLAYER2)
+       {
+           color.setNamedColor(Settings::COLOR_PLAYER_2);
+       }
+
+       painter->setBrush(color);
+       painter->drawRect(QRect(x, y, size, size));
+
        painter->drawImage(QRect(x, y, size, size), image);
     }
 }

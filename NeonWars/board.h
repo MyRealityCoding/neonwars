@@ -39,8 +39,8 @@ public:
     Ship* getShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y, Neighbour::Type);
-    bool add(Ship::Type, int columnIndex);
-    bool remove(const int &);
+    bool add(Ship::Type, Player::Type, int columnIndex);
+    bool remove(const int&, const int&);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     int getWidth() const;
@@ -58,6 +58,7 @@ private:
     bool validIndex(const int&, const int&) const;
     bool validIndexX(const int&) const;
     bool validIndexY(const int&) const;
+    bool removeByColumn(const int&);
 };
 
 #endif // BOARD_H

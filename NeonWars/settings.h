@@ -36,6 +36,12 @@ namespace Settings {
 
     // Padding of the cells
     static const int CELL_PADDING = 4;
+
+    // Color of Player 1
+    static const QString COLOR_PLAYER_1 = "#00ffb4";
+
+    // Color of Player 2
+    static const QString COLOR_PLAYER_2 = "#ff0036";
 }
 
 #endif // SETTINGS_H
