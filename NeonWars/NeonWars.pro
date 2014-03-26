@@ -15,11 +15,19 @@ RESOURCES += \
 QT       += core gui
 
 OTHER_FILES += \
-    background.jpg
+    background.jpg \
+    Resources/background.jpg \
+    Resources/ship-phaser.png \
+    Resources/ship-normal.png \
+    Resources/ship-missle.png \
+    Resources/ship-laser.png \
+    Resources/ship-bomb.png \
+    Resources/style.qss
 
 SOURCES += main.cpp\
     ship.cpp \
     board.cpp
 
 HEADERS  += ship.h \
-    board.h
+    board.h \
+    settings.h
