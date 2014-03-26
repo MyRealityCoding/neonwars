@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap(":BACKGROUND"));
 
     scene.addItem(item);
+    view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();
 }

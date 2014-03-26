@@ -6,5 +6,6 @@
         <file alias="NORMAL">Resources/ship-normal.png</file>
         <file alias="PHASER">Resources/ship-phaser.png</file>
         <file alias="BACKGROUND">Resources/background.jpg</file>
+        <file alias="STYLESHEET">Resources/style.qss</file>
     </qresource>
 </RCC>

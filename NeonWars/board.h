@@ -6,17 +6,21 @@
 #include <QMultiMap>
 #include <QPaintEvent>
 
-#include <ship.h>
+#include "ship.h"
 
-enum NeighbourType
-{
-    UP,
-    UP_LEFT,
-    UP_RIGHT,
-    BELOW,
-    BELOW_LEFT,
-    BELOW_RIGHT
-};
+namespace Neighbour {
+
+    enum Type {
+        UPPER,
+        LOWER,
+        LEFT,
+        RIGHT,
+        UPPER_LEFT,
+        UPPER_RIGHT,
+        LOWER_LEFT,
+        LOWER_RIGHT
+    };
+}
 
 class Board : public QGraphicsObject
 {
@@ -24,11 +28,11 @@ class Board : public QGraphicsObject
 public:
     explicit Board(int rows, int columns);
 
-    Ship* getShip(const QPoint&, NeighbourType);
+    Ship* getShip(const QPoint&, Neighbour::Type);
     Ship* getShip(const QPoint&);
     bool hasShip(const QPoint&);
-    bool hasShip(const QPoint&, NeighbourType);
-    void add(ShipType, int columnIndex);
+    bool hasShip(const QPoint&, Neighbour::Type);
+    void add(Ship::Type, int columnIndex);
     void remove(const QPoint&);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 signals:

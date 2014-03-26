@@ -1,15 +1,20 @@
 #include "ship.h"
 #include <QPainter>
 
+Ship::Ship()
+    : player(Player::NONE)
+{
 
-void Ship::setType(ShipType type){
+}
+
+void Ship::setType(Ship::Type type){
     switch (type){
-        case EMPTY :;
-        case NORMAL : image = QImage(":NORMAL");
-        case ROCKET : image = QImage(":ROCKET");
-        case BOMB : image = QImage(":BOMB");
-        case LASER : image = QImage(":LASER");
-        case PHASER: image = QImage(":PHASER");
+        case Ship::EMPTY :;
+        case Ship::NORMAL : image = QImage(":NORMAL");
+        case Ship::ROCKET : image = QImage(":ROCKET");
+        case Ship::BOMB : image = QImage(":BOMB");
+        case Ship::LASER : image = QImage(":LASER");
+        case Ship::PHASER: image = QImage(":PHASER");
         image = image.scaled(QSize(50,50));
     }
     this->update(this->x(),this->y(),this->boundingRect().width(),this->boundingRect().height());

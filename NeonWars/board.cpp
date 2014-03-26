@@ -7,7 +7,7 @@ Board::Board(int rows, int columns)
     {
         for (int y = 0; y < rows; ++y)
         {
-            Ship *ship = new Ship(NONE, EMPTY);
+            Ship *ship = new Ship();
             map.insert(x, QPair<int, Ship*>(y, ship));
         }
     }
@@ -18,7 +18,7 @@ void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     // TODO
 }
 
-Ship* Board::getShip(const QPoint &point, NeighbourType type)
+Ship* Board::getShip(const QPoint &point, Neighbour::Type type)
 {
     // TODO
     return NULL;
@@ -35,13 +35,13 @@ bool Board::hasShip(const QPoint &point)
     return false;
 }
 
-bool Board::hasShip(const QPoint &point, NeighbourType type)
+bool Board::hasShip(const QPoint &point, Neighbour::Type type)
 {
     // TODO
     return false;
 }
 
-void Board::add(ShipType, int columnIndex)
+void Board::add(Ship::Type, int columnIndex)
 {
     // TODO
 }
