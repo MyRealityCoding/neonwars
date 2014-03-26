@@ -6,7 +6,7 @@
 #include <QMultiMap>
 #include <QPaintEvent>
 #include <QPainter>
-
+#include "settings.h"
 #include "ship.h"
 
 namespace Neighbour {
@@ -46,8 +46,10 @@ signals:
 public slots:
 
 private:
-    int rows, columns;
-    QMultiMap<int, QPair<int, Ship*> > map;
+    Ship* map[Settings::COLUMN_COUNT][Settings::ROW_COUNT];
+
+    int transformIndexX(const int&, Neighbour::Type);
+    int transformIndexY(const int&, Neighbour::Type);
 };
 
 #endif // BOARD_H
