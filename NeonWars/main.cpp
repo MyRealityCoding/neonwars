@@ -5,18 +5,31 @@
 #include <stdio.h>
 
 #include "settings.h"
+#include "board.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
     QGraphicsScene scene;
     scene.setSceneRect(QRect(0, 0, Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT));
 
     QGraphicsView view(&scene);
-    QGraphicsPixmapItem *item = new QGraphicsPixmapItem(QPixmap(":BACKGROUND"));
+    view.setWindowTitle(Settings::APP_TITLE + " v. " + Settings::APP_VERSION);
+
+    QPixmap map(":BACKGROUND");
+
+    // Scale the background properly
+    map = map.scaledToHeight(Settings::WINDOW_HEIGHT);
+    QGraphicsPixmapItem *item = new QGraphicsPixmapItem(map);
 
     scene.addItem(item);
-    view.setStyleSheet(":/Resources/style.qss");
+
+    Board board(Settings::ROW_COUNT, Settings::COLUMN_COUNT);
+
+    scene.addItem(&board);
+
+    view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();
 }

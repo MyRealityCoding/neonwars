@@ -5,6 +5,7 @@
 #include <QGraphicsObject>
 #include <QMultiMap>
 #include <QPaintEvent>
+#include <QPainter>
 
 #include "ship.h"
 
@@ -28,13 +29,17 @@ class Board : public QGraphicsObject
 public:
     explicit Board(int rows, int columns);
 
-    Ship* getShip(const QPoint&, Neighbour::Type);
-    Ship* getShip(const QPoint&);
-    bool hasShip(const QPoint&);
-    bool hasShip(const QPoint&, Neighbour::Type);
+    Ship* getShip(const int &x, const int &y, Neighbour::Type);
+    Ship* getShip(const int &x, const int &y);
+    bool hasShip(const int &x, const int &y);
+    bool hasShip(const int &x, const int &y, Neighbour::Type);
     void add(Ship::Type, int columnIndex);
-    void remove(const QPoint&);
+    void remove(const int &x, const int &y);
+    QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    int getWidth() const;
+    int getHeight() const;
+    int getCellSize() const;
 signals:
 
 public slots:

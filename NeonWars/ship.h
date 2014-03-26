@@ -11,7 +11,7 @@ namespace Player {
 
 }
 
-class Ship : public QGraphicsObject
+class Ship : public QObject
 
 {
     Q_OBJECT
@@ -26,15 +26,15 @@ public:
         PHASER// Kills all Ships in diagonal
     };
 
-    explicit Ship();
-    QRectF boundingRect() const ;
+    Ship();
     void setType(Ship::Type);
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(const int&, const int&, const int&, QPainter *painter);
 
 
 signals:
 
 public slots:
+
 private:
     Player::Type player;
     Ship::Type type;
