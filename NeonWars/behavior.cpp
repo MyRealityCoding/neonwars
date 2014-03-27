@@ -21,6 +21,7 @@ void BombBehavior::trigger(Board *board, const int &x, const int &y)
     foreach (QPoint var, vector) {
          board->remove(var.x(),var.y());
     }
+    board->remove(x,y);
 
 }
 
