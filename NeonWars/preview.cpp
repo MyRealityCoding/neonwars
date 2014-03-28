@@ -47,11 +47,15 @@ void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         int x = bounds.x() + Settings::CELL_PADDING + i * Settings::PREVIEW_SIZE;
         int y = bounds.y() + Settings::CELL_PADDING;
         painter->setOpacity(1.0);
-        painter->fillRect(QRect(x, y, size, size),
-                          Qt::Dense1Pattern);
 
         if (it != elements.begin())
             painter->setOpacity(0.2);
+
+        if (_playerType == Player::PLAYER2)
+        {
+            x = bounds.x() + Settings::CELL_PADDING + (Settings::PREVIEW_COUNT - i - 1) * Settings::PREVIEW_SIZE;
+        }
+
         (*it)->paint(x, y, size, painter);
 
         it++;
