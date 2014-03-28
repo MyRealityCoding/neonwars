@@ -262,7 +262,8 @@ bool Board::removeByColumn(const int &indexX)
 
     return false;
 }
-std::vector<QPoint> Board::getNeighbours(const int& x, const int& y){
+std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
+{
     std::vector<QPoint> result;
     result.push_back(QPoint(x-1,y-1));
     result.push_back(QPoint(x-1,y));
@@ -275,24 +276,32 @@ std::vector<QPoint> Board::getNeighbours(const int& x, const int& y){
     return result;
 }
 
-void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event){
+void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
+{
     float gollum = (Event->pos().x()-Settings::GLOBAL_PADDING)/ ( float(this->getCellSize()));
     Preview * prev;
-    if(this->currentPlayer == Player::PLAYER1){
+    if(this->currentPlayer == Player::PLAYER1)
+    {
         prev = previewA;
     }
-    else {
+    else
+    {
         prev =previewB;
     }
-    this->add(prev->fetch(),gollum);
-    std::cout << gollum << std::endl;
-    std::cout << "CellSize" << this->getCellSize() << std::endl;
-    std::cout << Event->pos().x()<< std::endl;
-    if(this->currentPlayer == Player::PLAYER1){
-        currentPlayer = Player::PLAYER2;
+    if(this->canAdd(gollum))
+    {
+        this->add(prev->fetch(),gollum);
+        std::cout << gollum << std::endl;
+        std::cout << "CellSize" << this->getCellSize() << std::endl;
+        std::cout << Event->pos().x()<< std::endl;
+        if(this->currentPlayer == Player::PLAYER1){
+            currentPlayer = Player::PLAYER2;
+        }
+        else
+        {
+            currentPlayer = Player::PLAYER1;
+        }
     }
-    else {
-        currentPlayer = Player::PLAYER1;
-    }
+
 }
 
