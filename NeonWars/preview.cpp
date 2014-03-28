@@ -29,7 +29,7 @@ QRectF Preview::boundingRect() const
 Ship* Preview::fetch()
 {
     update();
-    Ship* result = elements.takeLast();
+    Ship* result = elements.takeFirst();
     elements.append(provideNext());
     return result;
 }
