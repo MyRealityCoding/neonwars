@@ -75,10 +75,7 @@ int Board::getHeight() const
     return getCellSize() * Settings::ROW_COUNT;
 }
 
-std::vector<QPoint> Board::getNeighbours(const int &x, const int &y)
-{
-    return std::vector<QPoint>();
-}
+
 
 std::vector<QPoint> Board::getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to)
 {
@@ -249,3 +246,35 @@ bool Board::removeByColumn(const int &indexX)
 
     return false;
 }
+std::vector<QPoint> Board::getNeighbours(const int& x, const int& y){
+    std::vector<QPoint> result;
+    result.push_back(QPoint(x-1,y-1));
+    result.push_back(QPoint(x-1,y));
+    result.push_back(QPoint(x-1,y+1));
+    result.push_back(QPoint(x,y-1));
+    result.push_back(QPoint(x,y+1));
+    result.push_back(QPoint(x+1,y-1));
+    result.push_back(QPoint(x+1,y));
+    result.push_back(QPoint(x+1,y+1));
+    return result;
+}
+
+void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event){
+    int gollum = Event->pos().x() /  this->getCellSize()+Settings::CELL_PADDING;
+    Preview * prev;
+    if(this->currentPlayer = Player::PLAYER1){
+        prev = previewA;
+    }
+    else {
+        prev =previewB;
+    }
+    this->add(prev->fetch(),gollum);
+    std::cout << "LALALAL KLICK BUNTI KAKCA";
+    if(this->currentPlayer = Player::PLAYER1){
+        currentPlayer = Player::PLAYER2;
+    }
+    else {
+        currentPlayer = Player::PLAYER1;
+    }
+}
+

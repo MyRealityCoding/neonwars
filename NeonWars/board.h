@@ -10,6 +10,7 @@
 #include "ship.h"
 #include <vector>
 #include "preview.h"
+#include <QGraphicsSceneMouseEvent>
 
 namespace Neighbour {
 
@@ -69,7 +70,7 @@ public:
      * etc.
      */
     std::vector<QPoint> getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to);
-
+    void mousePressEvent(QGraphicsSceneMouseEvent *);
 signals:
 
 public slots:
