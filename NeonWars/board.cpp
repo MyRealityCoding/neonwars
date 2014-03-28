@@ -114,7 +114,7 @@ bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
     return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
-bool Board::add(Ship::Type type, Player::Type player, int indexX)
+bool Board::add(Ship *ship, int indexX)
 {
     if (validIndexX(indexX))
     {
@@ -123,8 +123,7 @@ bool Board::add(Ship::Type type, Player::Type player, int indexX)
         if (validIndexY(indexY))
         {
             _rows[indexX]++;
-            _map[indexX][indexY]->setType(type);
-            _map[indexX][indexY]->setPlayer(player);
+            _map[indexX][indexY] = ship;
             _map[indexX][indexY]->triggerBehavior(this, indexX, indexY);
             return true;
         }

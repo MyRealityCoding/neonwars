@@ -28,13 +28,6 @@ int main(int argc, char *argv[])
     scene.addItem(item);
 
     Board board;
-    board.add(Ship::NORMAL, Player::PLAYER2, 1);
-    board.add(Ship::BOMB, Player::PLAYER1, 1);
-    board.add(Ship::BOMB, Player::PLAYER1, 1);
-    board.add(Ship::NORMAL, Player::PLAYER2, 1);
-    board.add(Ship::PHASER, Player::PLAYER2, 3);
-    board.add(Ship::PHASER, Player::PLAYER2, 3);
-    board.add(Ship::BOMB, Player::PLAYER1, 0);
 
     scene.addItem(&board);
 
@@ -42,6 +35,15 @@ int main(int argc, char *argv[])
 
     scene.addItem(&previewPlayer1);
     scene.addItem(&previewPlayer2);
+
+
+    board.add(previewPlayer1.fetch(), 1);
+    board.add(previewPlayer2.fetch(), 1);
+    board.add(previewPlayer1.fetch(), 1);
+    board.add(previewPlayer2.fetch(), 1);
+    board.add(previewPlayer1.fetch(), 3);
+    board.add(previewPlayer2.fetch(), 3);
+    board.add(previewPlayer2.fetch(), 0);
     //view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();

@@ -40,7 +40,7 @@ public:
     Ship* getShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y, Neighbour::Type);
-    bool add(Ship::Type, Player::Type, int columnIndex);
+    bool add(Ship*, int columnIndex);
     bool remove(const int&, const int&);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
