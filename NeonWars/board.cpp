@@ -113,6 +113,21 @@ bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
     return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
+bool Board::canAdd(const int &columnIndex) const
+{
+    if (validIndexX(columnIndex))
+    {
+        int indexY = Settings::ROW_COUNT - _rows[columnIndex] - 1;
+
+        if (validIndexY(indexY))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool Board::add(Ship *ship, int indexX)
 {
     if (validIndexX(indexX))
