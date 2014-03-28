@@ -4,7 +4,8 @@
 #include <QBrush>
 #include <iostream>
 
-Board::Board()
+Board::Board(Preview *a, Preview *b)
+    : previewA(a), previewB(b), currentPlayer(Player::PLAYER1)
 {
     for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
     {

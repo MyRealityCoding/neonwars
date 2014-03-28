@@ -27,11 +27,10 @@ int main(int argc, char *argv[])
 
     scene.addItem(item);
 
-    Board board;
+    Preview previewPlayer1(Player::PLAYER1), previewPlayer2(Player::PLAYER2);
+    Board board(&previewPlayer1, &previewPlayer2);
 
     scene.addItem(&board);
-
-    Preview previewPlayer1(Player::PLAYER1), previewPlayer2(Player::PLAYER2);
 
     scene.addItem(&previewPlayer1);
     scene.addItem(&previewPlayer2);

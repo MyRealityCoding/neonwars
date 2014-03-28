@@ -12,6 +12,7 @@ namespace Player {
         NONE,PLAYER1,PLAYER2
     };
 
+
 }
 
 class Ship : public QObject
