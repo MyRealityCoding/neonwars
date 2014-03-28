@@ -67,6 +67,7 @@ public:
      * etc.
      */
     std::vector<QPoint> getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to);
+
 signals:
 
 public slots:

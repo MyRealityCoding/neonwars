@@ -10,14 +10,14 @@ namespace Settings {
     // Name of this game
     static const QString APP_TITLE = "Neon Wars";
 
-    // Current version
+    // Current versionr
     static const QString APP_VERSION = "0.0.1";
 
     // Width of the game
-    static const int WINDOW_WIDTH = 800;
+    static const int WINDOW_WIDTH = 640;
 
     // Height of the game
-    static const int WINDOW_HEIGHT = 600;
+    static const int WINDOW_HEIGHT = 480;
 
     // Number of future ships
     static const int PREVIEW_COUNT = 4;
@@ -42,6 +42,12 @@ namespace Settings {
 
     // Color of Player 2
     static const QString COLOR_PLAYER_2 = "#ff0036";
+
+    // Opacity of Panels
+    static const double PANEL_OPACITY = 0.7;
+
+    // Chance for special item
+    static const int SPECIAL_FACTOR = 30;
 }
 
 #endif // SETTINGS_H

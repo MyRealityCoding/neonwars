@@ -6,9 +6,11 @@
 
 #include "settings.h"
 #include "board.h"
+#include "preview.h"
 
 int main(int argc, char *argv[])
-{
+{\
+    srand(time(NULL));
     QApplication a(argc, argv);
 
     QGraphicsScene scene;
@@ -33,9 +35,13 @@ int main(int argc, char *argv[])
     board.add(Ship::PHASER, Player::PLAYER2, 3);
     board.add(Ship::PHASER, Player::PLAYER2, 3);
     board.add(Ship::BOMB, Player::PLAYER1, 0);
-    board.remove(1, 4);
+
     scene.addItem(&board);
 
+    Preview previewPlayer1(Player::PLAYER1), previewPlayer2(Player::PLAYER2);
+
+    scene.addItem(&previewPlayer1);
+    scene.addItem(&previewPlayer2);
     //view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();

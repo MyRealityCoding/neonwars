@@ -26,7 +26,8 @@ public:
         LASER,  // Kills all Ships beneath it
         BOMB,   //Kills all neighbour Ships
         ROCKET, // Kills all neighbour enemy Ships
-        PHASER  // Kills all Ships in diagonal
+        PHASER,  // Kills all Ships in diagonal
+        MAX
     };
 
     Ship();

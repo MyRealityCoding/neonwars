@@ -25,7 +25,7 @@ Board::Board()
 void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->setRenderHint(QPainter::Antialiasing);
-    painter->setOpacity(0.7);
+    painter->setOpacity(Settings::PANEL_OPACITY);
     painter->fillRect(QRect(Settings::GLOBAL_PADDING, Settings::WINDOW_HEIGHT - getHeight() - Settings::GLOBAL_PADDING, getWidth(), getHeight()), Qt::SolidPattern);
 
     for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)

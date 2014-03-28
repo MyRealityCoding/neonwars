@@ -15,6 +15,7 @@ void  LaserBehavior::trigger(Board *board, const int &x, const int &y)
          board->remove(var.x(),var.y());
     }
 }
+
 void BombBehavior::trigger(Board *board, const int &x, const int &y)
 {
     std::vector<QPoint> vector = board->getNeighbours(x,y);

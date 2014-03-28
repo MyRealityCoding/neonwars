@@ -2,6 +2,8 @@
 #define PREVIEW_H
 
 #include "ship.h"
+#include <QGraphicsObject>
+#include <QLinkedList>
 
 class Preview : public QGraphicsObject
 
@@ -18,7 +20,11 @@ signals:
 public slots:
 
 private:
+
     Player::Type _playerType;
+    QLinkedList<Ship*> elements;
+
+    Ship* provideNext();
 };
 
 #endif // PREVIEW_H
