@@ -241,3 +241,21 @@ bool Board::removeByColumn(const int &indexX)
 
     return false;
 }
+std::vector<QPoint> Board::getNeighbours(const int& x, const int& y){
+    std::vector<QPoint> result;
+    result.push_back(_map[x-1][y-1]);
+    result.push_back(_map[x-1][y]);
+    result.push_back(_map[x-1][y+1]);
+    result.push_back(_map[x][y-1]);
+    result.push_back(_map[x][y+1]);
+    result.push_back(_map[x+1][y-1]);
+    result.push_back(_map[x+1][y]);
+    result.push_back(_map[x+1][y+1]);
+    return result;
+}
+
+void Board::mousePressEvent(QMouseEvent *){
+    int collum = QMouseEvent.x() %  this->getCellSize()+Settings::CELL_PADDING;
+    this->add(p)
+}
+
