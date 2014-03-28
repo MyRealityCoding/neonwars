@@ -57,7 +57,7 @@ void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
 QRectF Board::boundingRect() const
 {
-    return QRectF(QPoint(this->x() + Settings::GLOBAL_PADDING,this->y() + Settings::GLOBAL_PADDING),QPoint(this->x() + getWidth(),this->y()+ getHeight()));
+    return QRectF(Settings::GLOBAL_PADDING, Settings::WINDOW_HEIGHT - getHeight() - Settings::GLOBAL_PADDING, getWidth(), getHeight());
 }
 
 int Board::getCellSize() const
