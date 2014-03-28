@@ -146,6 +146,8 @@ bool Board::remove(const int &indexX, const int &indexY)
     if (indexY == 0 || getShip(indexX, indexY, Neighbour::UPPER)->getType() == Ship::NONE)
     {
         removeByColumn(indexX);
+        update();
+        return true;
     }
     else
     {
@@ -170,6 +172,10 @@ bool Board::remove(const int &indexX, const int &indexY)
 
             localIndexY--;
         }
+
+        update();
+
+        return true;
     }
 
     return false;
