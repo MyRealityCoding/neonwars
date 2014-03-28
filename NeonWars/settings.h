@@ -44,7 +44,7 @@ namespace Settings {
     static const QString COLOR_PLAYER_2 = "#ff0036";
 
     // Opacity of Panels
-    static const double PANEL_OPACITY = 0.7;
+    static const double PANEL_OPACITY = 0.1;
 
     // Chance for special item
     static const int SPECIAL_FACTOR = 30;
