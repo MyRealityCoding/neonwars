@@ -126,6 +126,7 @@ bool Board::add(Ship *ship, int indexX)
             _rows[indexX]++;
             _map[indexX][indexY] = ship;
             _map[indexX][indexY]->triggerBehavior(this, indexX, indexY);
+            update();
             return true;
         }
         else
