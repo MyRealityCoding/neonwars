@@ -26,6 +26,14 @@ QRectF Preview::boundingRect() const
     }
 }
 
+Ship* Preview::fetch()
+{
+    update();
+    Ship* result = elements.takeLast();
+    elements.append(provideNext());
+    return result;
+}
+
 void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF bounds = boundingRect();
@@ -42,6 +50,8 @@ void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         painter->fillRect(QRect(x, y, size, size),
                           Qt::Dense1Pattern);
 
+        if (it != elements.begin())
+            painter->setOpacity(0.2);
         (*it)->paint(x, y, size, painter);
 
         it++;
