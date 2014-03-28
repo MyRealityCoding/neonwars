@@ -9,6 +9,7 @@
 #include "settings.h"
 #include "ship.h"
 #include <vector>
+#include "preview.h"
 
 namespace Neighbour {
 
@@ -32,9 +33,10 @@ class Board : public QGraphicsObject
 private:
     Ship* _map[Settings::COLUMN_COUNT][Settings::ROW_COUNT];
     int _rows[Settings::COLUMN_COUNT];
-
+    Preview *previewA, *previewB;
+    Player::Type currentPlayer;
 public:
-    Board();
+    Board(Preview*, Preview*);
 
     Ship* getShip(const int &x, const int &y, Neighbour::Type);
     Ship* getShip(const int &x, const int &y);
