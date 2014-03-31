@@ -264,6 +264,8 @@ bool Board::removeByColumn(const int &indexX)
 }
 std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
 {
+    // TODO: Fix bug that neighbours can be selected which are "out of bounds"
+
     std::vector<QPoint> result;
     result.push_back(QPoint(x-1,y-1));
     result.push_back(QPoint(x-1,y));
@@ -278,7 +280,7 @@ std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
 
 void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
-    float gollum = (Event->pos().x()-Settings::GLOBAL_PADDING)/ ( float(this->getCellSize()));
+    float column = (Event->pos().x()-Settings::GLOBAL_PADDING)/ ( float(this->getCellSize()));
     Preview * prev;
     if(this->currentPlayer == Player::PLAYER1)
     {
@@ -288,12 +290,9 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
     {
         prev =previewB;
     }
-    if(this->canAdd(gollum))
+    if(this->canAdd(column))
     {
-        this->add(prev->fetch(),gollum);
-        std::cout << gollum << std::endl;
-        std::cout << "CellSize" << this->getCellSize() << std::endl;
-        std::cout << Event->pos().x()<< std::endl;
+        this->add(prev->fetch(), column);
         if(this->currentPlayer == Player::PLAYER1){
             currentPlayer = Player::PLAYER2;
         }
