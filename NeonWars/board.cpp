@@ -264,17 +264,26 @@ bool Board::removeByColumn(const int &indexX)
 }
 std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
 {
-    // TODO: Fix bug that neighbours can be selected which are "out of bounds"
-
     std::vector<QPoint> result;
-    result.push_back(QPoint(x-1,y-1));
-    result.push_back(QPoint(x-1,y));
-    result.push_back(QPoint(x-1,y+1));
-    result.push_back(QPoint(x,y-1));
-    result.push_back(QPoint(x,y+1));
-    result.push_back(QPoint(x+1,y-1));
-    result.push_back(QPoint(x+1,y));
-    result.push_back(QPoint(x+1,y+1));
+
+    // Provide bounds
+    const int startX = x - 1 >= 0 ? x - 1 : 0;
+    const int startY = y - 1 >= 0 ? y - 1 : 0;
+    const int endX = x + 1 < Settings::COLUMN_COUNT ? x + 1 : Settings::COLUMN_COUNT - 1;
+    const int endY = y + 1 < Settings::ROW_COUNT ? y + 1 : Settings::ROW_COUNT - 1;
+
+    // Build neigbour bounds
+    for (int localY = startY; localY <= endY; ++localY)
+    {
+        for (int localX = startX; localX <= endX; ++localX)
+        {
+            if (validIndex(localX, localY) && localX != x && localY != y)
+            {
+                result.push_back(QPoint(localX, localY));
+            }
+        }
+    }
+
     return result;
 }
 
