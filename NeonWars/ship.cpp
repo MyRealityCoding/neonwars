@@ -21,21 +21,27 @@ void Ship::setType(Ship::Type type){
     switch (type){
         case Ship::NONE:
             player = Player::NONE;
+            setBehavior(new NormalBehavior());
             break;
         case Ship::NORMAL:
             image = QImage(":NORMAL");
+            setBehavior(new NormalBehavior());
             break;
         case Ship::ROCKET:
             image = QImage(":ROCKET");
+            setBehavior(new RocketBehavior());
             break;
         case Ship::BOMB:
             image = QImage(":BOMB");
+            setBehavior(new BombBehavior());
             break;
         case Ship::LASER:
             image = QImage(":LASER");
+            setBehavior(new LaserBehavior());
             break;
         case Ship::PHASER:
             image = QImage(":PHASER");
+            setBehavior(new PhaserBehavior());
             break;
     }
 

@@ -53,7 +53,7 @@ public:
     int getCellSize() const;
     std::vector<QPoint> getNeighbours(const int&, const int&);
 
-    /* Returns all positions in the given range.
+    /* Returns all positions of the given direction
      *
      * Example:
      *
@@ -70,7 +70,7 @@ public:
      *
      * etc.
      */
-    std::vector<QPoint> getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to);
+    std::vector<QPoint> getShips(const int&, const int&, const QVector2D&);
     void mousePressEvent(QGraphicsSceneMouseEvent *);
 signals:
 

@@ -78,7 +78,7 @@ int Board::getHeight() const
 
 
 
-std::vector<QPoint> Board::getShips(const int&, const int&, Neighbour::Type from, Neighbour::Type to)
+std::vector<QPoint> Board::getShips(const int &x, const int &y, const QVector2D &dir)
 {
     return std::vector<QPoint>();
 }
@@ -277,7 +277,7 @@ std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
     {
         for (int localX = startX; localX <= endX; ++localX)
         {
-            if (validIndex(localX, localY) && localX != x && localY != y)
+            if (hasShip(localX, localY) && localX != x && localY != y)
             {
                 result.push_back(QPoint(localX, localY));
             }
