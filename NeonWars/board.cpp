@@ -411,11 +411,16 @@ Preview* Board::getPreview(Player::Type type)
 
     return p;
 }
-
-void Board::mouseMoveEvent(QGraphicsSceneMouseEvent * Event)
+bool Board::eventFilter(QObject *obj, QEvent *event)
 {
-    arrow.x = getColumn(Event->pos().x());
+  if (event->type() == QEvent::MouseMove)
+  {
+    QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+    arrow.x = getColumn(mouseEvent->pos().x());
     update();
+    return true;
+  }
+  return false;
 }
 
 void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)

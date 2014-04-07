@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
     scene.addItem(&previewPlayer1);
     scene.addItem(&previewPlayer2);
 
+    a.installEventFilter(&board);
+
     //view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();
