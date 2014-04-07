@@ -267,18 +267,19 @@ std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
     std::vector<QPoint> result;
 
     // Provide bounds
-    const int startX = x - 1 >= 0 ? x - 1 : 0;
-    const int startY = y - 1 >= 0 ? y - 1 : 0;
-    const int endX = x + 1 < Settings::COLUMN_COUNT ? x + 1 : Settings::COLUMN_COUNT - 1;
-    const int endY = y + 1 < Settings::ROW_COUNT ? y + 1 : Settings::ROW_COUNT - 1;
+    const int startX = (x - 1) >= 0 ? x - 1 : 0;
+    const int startY = (y - 1) >= 0 ? y - 1 : 0;
+    const int endX   = (x + 1) < Settings::COLUMN_COUNT ? x + 1 : Settings::COLUMN_COUNT - 1;
+    const int endY   = (y + 1) < Settings::ROW_COUNT ? y + 1 : Settings::ROW_COUNT - 1;
 
     // Build neigbour bounds
-    for (int localY = startY; localY <= endY; ++localY)
+    for (int localY = startY; localY <= endY; localY++)
     {
-        for (int localX = startX; localX <= endX; ++localX)
+        for (int localX = startX; localX <= endX; localX++)
         {
-            if (hasShip(localX, localY) && localX != x && localY != y)
+            if (hasShip(localX, localY) && (localX != x || localY != y))
             {
+                std::cout << "Found Neighbour!" << std::endl;
                 result.push_back(QPoint(localX, localY));
             }
         }

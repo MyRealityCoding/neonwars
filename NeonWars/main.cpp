@@ -35,14 +35,6 @@ int main(int argc, char *argv[])
     scene.addItem(&previewPlayer1);
     scene.addItem(&previewPlayer2);
 
-
-    board.add(previewPlayer1.fetch(), 1);
-    board.add(previewPlayer2.fetch(), 1);
-    board.add(previewPlayer1.fetch(), 1);
-    board.add(previewPlayer2.fetch(), 1);
-    board.add(previewPlayer1.fetch(), 3);
-    board.add(previewPlayer2.fetch(), 3);
-    board.add(previewPlayer2.fetch(), 0);
     //view.setStyleSheet(":STYLESHEET");
     view.show();
     return a.exec();
