@@ -28,8 +28,9 @@ void Arrow::draw(QPainter* painter, Board *b)
     }
 
     if (y > 1) {
-        painter->setOpacity(1.0);
-        painter->drawImage(QRect(drawX, b->boundingRect().y(), b->getCellSize(), b->getCellSize()), *arr);
+        painter->setOpacity(0.4);
+        painter->drawImage(QRect(drawX + Settings::CELL_PADDING, b->boundingRect().y() + Settings::CELL_PADDING,
+                                 b->getCellSize() - Settings::CELL_PADDING * 2, b->getCellSize() - Settings::CELL_PADDING * 2), *arr);
     }
 
 }

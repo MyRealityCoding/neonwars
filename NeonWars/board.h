@@ -60,6 +60,8 @@ public:
     void reset();
     Player::Type won();
 
+    bool eventFilter(QObject *obj, QEvent *event);
+
     /* Returns all positions of the given direction
      *
      * Example:
@@ -79,7 +81,6 @@ public:
      */
     std::vector<QPoint> getShips(const int&, const int&, const QVector2D&);
     void mousePressEvent(QGraphicsSceneMouseEvent *);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *);
 signals:
 
 public slots:

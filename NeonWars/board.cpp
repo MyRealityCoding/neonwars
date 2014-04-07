@@ -411,34 +411,42 @@ Preview* Board::getPreview(Player::Type type)
 
     return p;
 }
-
-void Board::mouseMoveEvent(QGraphicsSceneMouseEvent * Event)
+bool Board::eventFilter(QObject *obj, QEvent *event)
 {
-    arrow.x = getColumn(Event->pos().x());
+  if (event->type() == QEvent::MouseMove)
+  {
+    QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+    arrow.x = getColumn(mouseEvent->pos().x());
     update();
+    return true;
+  }
+  return false;
 }
 
 void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
     int column = getColumn(Event->pos().x());
     Preview * prev;
+
     if(this->currentPlayer == Player::PLAYER1)
     {
         prev = previewA;
     }
     else
     {
-        prev =previewB;
+        prev = previewB;
     }
     if(this->canAdd(column))
     {
         this->add(prev->fetch(), column);
         if(this->currentPlayer == Player::PLAYER1){
             currentPlayer = Player::PLAYER2;
+            previewB->update();
         }
         else
         {
             currentPlayer = Player::PLAYER1;
+            previewA->update();
         }
         if(this->won() != Player::NONE){
 
