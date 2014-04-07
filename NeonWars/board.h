@@ -6,12 +6,14 @@
 #include <QMultiMap>
 #include <QPaintEvent>
 #include <QPainter>
+#include <vector>
+#include <QGraphicsSceneMouseEvent>
+#include <QMediaPlayer>
+
+#include "arrow.h"
 #include "settings.h"
 #include "ship.h"
-#include <vector>
 #include "preview.h"
-#include <QGraphicsSceneMouseEvent>
-#include "arrow.h"
 
 namespace Neighbour {
 
@@ -38,6 +40,7 @@ private:
     Preview *previewA, *previewB;
     Player::Type currentPlayer;
     Arrow arrow;
+    QMediaPlayer *mediaPlayer;
 public:
     Board(Preview*, Preview*);
 

@@ -29,4 +29,6 @@ Makefile*
 
 # QtCreator
 
+**/NeonWars
+
 *.autosave

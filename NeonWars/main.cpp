@@ -3,6 +3,8 @@
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <stdio.h>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 #include "settings.h"
 #include "board.h"
@@ -38,7 +40,11 @@ int main(int argc, char *argv[])
 
     a.installEventFilter(&board);
 
-    //view.setStyleSheet(":STYLESHEET");
+    QMediaPlayer *p = new QMediaPlayer;
+
+    p->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/theme.mp3"));
+    p->setVolume(50);
+    p->play();
     view.show();
     return a.exec();
 }

@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QString>
+#include <QMediaPlayer>
 
 namespace Settings {
 

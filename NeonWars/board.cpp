@@ -2,12 +2,15 @@
 #include "settings.h"
 
 #include <QBrush>
+#include <QCoreApplication>
 #include <iostream>
 #include <cmath>
 
 Board::Board(Preview *a, Preview *b)
-    : previewA(a), previewB(b), currentPlayer(Player::PLAYER1)
+    : previewA(a), previewB(b), currentPlayer(Player::PLAYER1), mediaPlayer(NULL)
 {
+    mediaPlayer = new QMediaPlayer;
+
     for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
     {
         for (int y = 0; y < Settings::ROW_COUNT; ++y)
@@ -162,6 +165,7 @@ std::vector<QPoint> Board::getShips(const int &x, const int &y, const QVector2D 
     {
         localX -= normalized.x();
         localY -= normalized.y();
+
         if (hasShip(localX, localY))
         {
             points.push_back(QPoint(localX, localY));
@@ -448,9 +452,21 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
             currentPlayer = Player::PLAYER1;
             previewA->update();
         }
-        if(this->won() != Player::NONE){
+
+        Player::Type won = this->won();
+
+        if(won != Player::NONE){
+            mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/victory.mp3"));
+            mediaPlayer->setVolume(50);
+            mediaPlayer->play();
 
             this->reset();
+        }
+        else
+        {
+            mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/crunch.mp3"));
+            mediaPlayer->setVolume(50);
+            mediaPlayer->play();
         }
     }
 

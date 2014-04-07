@@ -3,10 +3,16 @@
 
 class Board;
 class Ship;
+class QMediaPlayer;
 
 class Behavior
 {
+protected:
+
+
+    QMediaPlayer *mediaPlayer;
 public:
+    Behavior();
     virtual void trigger(Board *board, const int&, const int&) = 0;
 };
 

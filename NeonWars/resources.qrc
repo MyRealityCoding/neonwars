@@ -8,5 +8,9 @@
         <file alias="BACKGROUND">Resources/background.jpg</file>
         <file alias="STYLESHEET">Resources/style.qss</file>
         <file alias="ARROW">Resources/arrow.png</file>
+        <file alias="MUSIC">Resources/theme.mp3</file>
+        <file alias="CRUNCH">Resources/crunch.mp3</file>
+        <file alias="EXPLOSION">Resources/explosion.mp3</file>
+        <file alias="VICTORY">Resources/victory.mp3</file>
     </qresource>
 </RCC>
