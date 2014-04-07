@@ -53,6 +53,7 @@ public:
     int getCellSize() const;
     std::vector<QPoint> getNeighbours(const int&, const int&);
     void reset();
+    Player::Type won();
 
     /* Returns all positions of the given direction
      *

@@ -48,6 +48,9 @@ namespace Settings {
 
     // Chance for special item
     static const int SPECIAL_FACTOR = 30;
+
+    // Number of ships in a row to win
+    static const int WIN_AMMOUNT = 5;
 }
 
 #endif // SETTINGS_H

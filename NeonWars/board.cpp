@@ -387,7 +387,86 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
         {
             currentPlayer = Player::PLAYER1;
         }
+        if(this->won() != Player::NONE){
+
+            this->reset();
+        }
     }
 
 }
 
+Player::Type Board::won()
+{
+    int count = 0;
+    Player::Type currentPlayer = Player::PLAYER1;
+
+    //Check Horizontal
+    for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
+    {
+        count = 0;
+        for (int y = 0; y < Settings::ROW_COUNT; ++y)
+        {
+            Ship *ship;
+
+            if (validIndex(x, y))
+            {
+                 ship = _map[x][y];
+                if(ship->getPlayer() != Player::NONE)
+                {
+                         if(ship->getPlayer() == currentPlayer)
+                         {
+                             count++;
+                             if(count == Settings::WIN_AMMOUNT)
+                             {
+                                 return currentPlayer;
+                             }
+                         }
+                         else
+                         {
+                             currentPlayer = ship->getPlayer();
+                             count = 1;
+                         }
+
+                }
+        }
+
+
+    }
+    }
+
+    // Check Diagonal
+    for (int y = 0; y < Settings::ROW_COUNT; ++y)
+    {
+        count = 0;
+        for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
+        {
+            Ship *ship;
+
+            if (validIndex(x, y))
+            {
+                 ship = _map[x][y];
+                if(ship->getPlayer() != Player::NONE)
+                {
+                         if(ship->getPlayer() == currentPlayer)
+                         {
+                             count++;
+                             if(count == Settings::WIN_AMMOUNT)
+                             {
+                                 return currentPlayer;
+                             }
+                         }
+                         else
+                         {
+                             currentPlayer = ship->getPlayer();
+                             count = 1;
+                         }
+
+                }
+        }
+
+
+    }
+    }
+    return Player::NONE;
+
+}
