@@ -48,7 +48,7 @@ namespace Settings {
     static const double PANEL_OPACITY = 0.6;
 
     // Chance for special item
-    static const int SPECIAL_FACTOR = 30;
+    static const int SPECIAL_FACTOR = 40;
 
     // Number of ships in a row to win
     static const int WIN_AMMOUNT = 5;

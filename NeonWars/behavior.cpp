@@ -23,10 +23,6 @@ void  LaserBehavior::trigger(Board *board, const int &x, const int &y)
          board->remove(var.x(),var.y());
     }
     board->remove(x,y);
-
-    mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-    mediaPlayer->setVolume(50);
-    mediaPlayer->play();
 }
 
 void BombBehavior::trigger(Board *board, const int &x, const int &y)
@@ -55,10 +51,6 @@ void RocketBehavior::trigger(Board *board, const int &x, const int &y)
         }
     }
     board->remove(x,y);
-
-    mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-    mediaPlayer->setVolume(50);
-    mediaPlayer->play();
 }
 
 void PhaserBehavior::trigger(Board *board, const int &x, const int &y)
@@ -79,8 +71,4 @@ void PhaserBehavior::trigger(Board *board, const int &x, const int &y)
             board->remove(var.x(),var.y());
         }
     }
-
-    mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-    mediaPlayer->setVolume(50);
-    mediaPlayer->play();
 }
