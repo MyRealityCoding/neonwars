@@ -5,6 +5,8 @@
 #include <QGraphicsObject>
 #include <QLinkedList>
 
+class Board;
+
 class Preview : public QGraphicsObject
 
 {
@@ -16,12 +18,13 @@ public:
     Ship* top();
     Ship* fetch();
     void reset();
+    void setBoard(Board*);
 signals:
 
 public slots:
 
 private:
-
+    Board *board;
     Player::Type _playerType;
     QLinkedList<Ship*> elements;
 

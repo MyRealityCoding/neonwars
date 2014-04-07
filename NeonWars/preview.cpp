@@ -1,11 +1,12 @@
 #include "preview.h"
 #include "settings.h"
+#include "board.h"
 
 #include <iostream>
 #include <QPainter>
 
 Preview::Preview(Player::Type type)
-    : _playerType(type)
+    : _playerType(type), board(NULL)
 {
     for (int i = 0; i < Settings::PREVIEW_COUNT; ++i)
     {
@@ -46,11 +47,28 @@ Ship* Preview::fetch()
     return result;
 }
 
+void Preview::setBoard(Board *b)
+{
+    board = b;
+}
+
 void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF bounds = boundingRect();
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setOpacity(Settings::PANEL_OPACITY);
+
+    std::cout << "Current player is " << _playerType << std::endl;
+    if (board != NULL && board->getCurrentPlayer() == _playerType)
+    {
+        painter->setOpacity(1.0);
+    }
+    else
+    {
+        painter->setOpacity(0.5);
+    }
+
+    painter->setBrush(QColor(0, 0, 0));
     painter->fillRect(bounds, Qt::SolidPattern);
     QLinkedList<Ship*>::iterator it = elements.begin();
     for (int i = 0; i < Settings::PREVIEW_COUNT; ++i)
@@ -58,10 +76,15 @@ void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         int size = Settings::PREVIEW_SIZE - Settings::CELL_PADDING * 2;
         int x = bounds.x() + Settings::CELL_PADDING + i * Settings::PREVIEW_SIZE;
         int y = bounds.y() + Settings::CELL_PADDING;
-        painter->setOpacity(1.0);
 
-        if (it != elements.begin())
+       if (it != elements.begin())
+        {
             painter->setOpacity(0.2);
+        }
+        else if (board != NULL && board->getCurrentPlayer() == _playerType)
+        {
+            painter->setOpacity(1.0);
+        }
 
         if (_playerType == Player::PLAYER2)
         {

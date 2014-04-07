@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
 
     Preview previewPlayer1(Player::PLAYER1), previewPlayer2(Player::PLAYER2);
     Board board(&previewPlayer1, &previewPlayer2);
-
+    previewPlayer1.setBoard(&board);
+    previewPlayer2.setBoard(&board);
     scene.addItem(&board);
 
     scene.addItem(&previewPlayer1);

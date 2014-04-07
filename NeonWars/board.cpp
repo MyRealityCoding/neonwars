@@ -427,23 +427,26 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
     int column = getColumn(Event->pos().x());
     Preview * prev;
+
     if(this->currentPlayer == Player::PLAYER1)
     {
         prev = previewA;
     }
     else
     {
-        prev =previewB;
+        prev = previewB;
     }
     if(this->canAdd(column))
     {
         this->add(prev->fetch(), column);
         if(this->currentPlayer == Player::PLAYER1){
             currentPlayer = Player::PLAYER2;
+            previewB->update();
         }
         else
         {
             currentPlayer = Player::PLAYER1;
+            previewA->update();
         }
         if(this->won() != Player::NONE){
 
