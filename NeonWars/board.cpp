@@ -531,15 +531,44 @@ Player::Type Board::won()
 
     for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
     {
-        count = 0;
         for (int y = 0; y < Settings::ROW_COUNT; ++y)
         {
+            count =0;
             //Get Diagonal 1
             std::vector<QPoint> vector1 = getShips(x,y, QVector2D(1, 1));
-            if(vector1.capacity() >=3){
+            vector1.push_back(QPoint(x,y));
+            if(vector1.capacity() >=4){
                 foreach (QPoint var, vector1) {
+                    if(getShip(var.x(),var.y())->getPlayer() != Player::NONE)
+                    {
+                    if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
+
+                        count++;
+                        std::cout << "Player: " <<currentPlayer << " C: " << count << std::endl;
+                        if(count==Settings::WIN_AMMOUNT)
+                        {
+                            return currentPlayer;
+                        }
+                    }
+                    else
+                    {
+                        currentPlayer = getShip(var.x(),var.y())->getPlayer();
+                        count = 1;
+                    }
+                }
+                }
+            }
+            // Get Diagonal 2
+            count =0;
+            std::vector<QPoint> vector2 = getShips(x,y, QVector2D(1, -1));
+            vector2.push_back(QPoint(x,y));
+            if(vector2.capacity() >=4){
+                foreach (QPoint var, vector2) {
+                    if(getShip(var.x(),var.y())->getPlayer() != Player::NONE)
+                    {
                     if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
                         count++;
+                        std::cout << "Player: " <<currentPlayer << " C: " << count << std::endl;
                         if(count==Settings::WIN_AMMOUNT)
                         {
                             return currentPlayer;
@@ -552,24 +581,6 @@ Player::Type Board::won()
                     }
                 }
             }
-            // Get Diagonal 2
-
-            std::vector<QPoint> vector2 = getShips(x,y, QVector2D(1, -1));
-            if(vector2.capacity() >=3){
-                foreach (QPoint var, vector2) {
-                    if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
-                        count++;
-                        if(count==Settings::WIN_AMMOUNT)
-                        {
-                            return currentPlayer;
-                        }
-                    }
-                    else
-                    {
-                        currentPlayer = getShip(var.x(),var.y())->getPlayer();
-                        count = 1;
-                    }
-                }
             }
         }
     }
