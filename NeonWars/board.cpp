@@ -536,7 +536,7 @@ Player::Type Board::won()
         {
             //Get Diagonal 1
             std::vector<QPoint> vector1 = getShips(x,y, QVector2D(1, 1));
-            if(vector1.capacity() >=4){
+            if(vector1.capacity() >=3){
                 foreach (QPoint var, vector1) {
                     if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
                         count++;
@@ -555,7 +555,7 @@ Player::Type Board::won()
             // Get Diagonal 2
 
             std::vector<QPoint> vector2 = getShips(x,y, QVector2D(1, -1));
-            if(vector2.capacity() >=4){
+            if(vector2.capacity() >=3){
                 foreach (QPoint var, vector2) {
                     if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
                         count++;
