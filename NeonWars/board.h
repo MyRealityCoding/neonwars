@@ -11,6 +11,7 @@
 #include <vector>
 #include "preview.h"
 #include <QGraphicsSceneMouseEvent>
+#include "arrow.h"
 
 namespace Neighbour {
 
@@ -36,6 +37,7 @@ private:
     int _rows[Settings::COLUMN_COUNT];
     Preview *previewA, *previewB;
     Player::Type currentPlayer;
+    Arrow arrow;
 public:
     Board(Preview*, Preview*);
 
@@ -51,6 +53,9 @@ public:
     int getWidth() const;
     int getHeight() const;
     int getCellSize() const;
+    int getColumn(int xPos) const;
+    Preview *getPreview(Player::Type);
+    Player::Type getCurrentPlayer() const;
     std::vector<QPoint> getNeighbours(const int&, const int&);
     void reset();
     Player::Type won();
@@ -74,6 +79,7 @@ public:
      */
     std::vector<QPoint> getShips(const int&, const int&, const QVector2D&);
     void mousePressEvent(QGraphicsSceneMouseEvent *);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *);
 signals:
 
 public slots:

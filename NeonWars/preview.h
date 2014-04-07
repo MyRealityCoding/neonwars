@@ -13,7 +13,7 @@ public:
     Preview(Player::Type);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
+    Ship* top();
     Ship* fetch();
     void reset();
 signals:

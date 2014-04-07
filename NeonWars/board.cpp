@@ -54,6 +54,16 @@ void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             }
         }
     }
+
+    QColor color(Settings::COLOR_PLAYER_1);
+
+    if (currentPlayer == Player::PLAYER2)
+    {
+        color.setNamedColor(Settings::COLOR_PLAYER_2);
+    }
+
+    painter->setBrush(color);
+    arrow.draw(painter, this);
 }
 
 QRectF Board::boundingRect() const
@@ -188,6 +198,11 @@ bool Board::hasShip(const int &x, const int &y)
 
 bool Board::hasShip(const int &x, const int &y, Neighbour::Type type)
 {
+    if (!validIndex(x, y))
+    {
+        return false;
+    }
+
     return getShip(x, y, type)->getType() != Ship::NONE;
 }
 
@@ -365,9 +380,47 @@ std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
     return result;
 }
 
+int Board::getColumn(int xPos) const
+{
+    int column = (xPos-Settings::GLOBAL_PADDING)/ ( float(this->getCellSize()));
+
+    if (column < 0)
+    {
+        return 0;
+    } else if (column >= Settings::COLUMN_COUNT)
+    {
+        return Settings::COLUMN_COUNT - 1;
+    } else {
+        return column;
+    }
+}
+
+Player::Type Board::getCurrentPlayer() const
+{
+    return currentPlayer;
+}
+
+Preview* Board::getPreview(Player::Type type)
+{
+    Preview* p = previewA;
+
+    if (type == Player::PLAYER2)
+    {
+        p = previewB;
+    }
+
+    return p;
+}
+
+void Board::mouseMoveEvent(QGraphicsSceneMouseEvent * Event)
+{
+    arrow.x = getColumn(Event->pos().x());
+    update();
+}
+
 void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
-    float column = (Event->pos().x()-Settings::GLOBAL_PADDING)/ ( float(this->getCellSize()));
+    int column = getColumn(Event->pos().x());
     Preview * prev;
     if(this->currentPlayer == Player::PLAYER1)
     {

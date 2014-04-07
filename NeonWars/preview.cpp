@@ -33,6 +33,10 @@ QRectF Preview::boundingRect() const
          fetch();
      }
  }
+Ship* Preview::top()
+{
+    return *elements.begin();
+}
 
 Ship* Preview::fetch()
 {

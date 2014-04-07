@@ -67,7 +67,6 @@ void Ship::paint(const int &x, const int &y, const int &size, QPainter *painter)
        painter->setBrush(color);
        painter->drawRect(QRect(x, y, size, size));
 
-       //image.setColor(0, qRgb(0, 0, 0));
 
        painter->drawImage(QRect(x, y, size, size), image);
     }
