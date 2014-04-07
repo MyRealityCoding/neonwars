@@ -357,7 +357,6 @@ std::vector<QPoint> Board::getNeighbours(const int& x, const int& y)
         {
             if (hasShip(localX, localY) && (localX != x || localY != y))
             {
-                std::cout << "Found Neighbour!" << std::endl;
                 result.push_back(QPoint(localX, localY));
             }
         }
