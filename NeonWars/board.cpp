@@ -463,28 +463,28 @@ Player::Type Board::won()
 
             if (validIndex(x, y))
             {
-                 ship = _map[x][y];
+                ship = _map[x][y];
                 if(ship->getPlayer() != Player::NONE)
                 {
-                         if(ship->getPlayer() == currentPlayer)
-                         {
-                             count++;
-                             if(count == Settings::WIN_AMMOUNT)
-                             {
-                                 return currentPlayer;
-                             }
-                         }
-                         else
-                         {
-                             currentPlayer = ship->getPlayer();
-                             count = 1;
-                         }
+                    if(ship->getPlayer() == currentPlayer)
+                    {
+                        count++;
+                        if(count == Settings::WIN_AMMOUNT)
+                        {
+                            return currentPlayer;
+                        }
+                    }
+                    else
+                    {
+                        currentPlayer = ship->getPlayer();
+                        count = 1;
+                    }
 
                 }
+            }
+
+
         }
-
-
-    }
     }
 
     // Check Diagonal
@@ -497,28 +497,73 @@ Player::Type Board::won()
 
             if (validIndex(x, y))
             {
-                 ship = _map[x][y];
+                ship = _map[x][y];
                 if(ship->getPlayer() != Player::NONE)
                 {
-                         if(ship->getPlayer() == currentPlayer)
-                         {
-                             count++;
-                             if(count == Settings::WIN_AMMOUNT)
-                             {
-                                 return currentPlayer;
-                             }
-                         }
-                         else
-                         {
-                             currentPlayer = ship->getPlayer();
-                             count = 1;
-                         }
+                    if(ship->getPlayer() == currentPlayer)
+                    {
+                        count++;
+                        if(count == Settings::WIN_AMMOUNT)
+                        {
+                            return currentPlayer;
+                        }
+                    }
+                    else
+                    {
+                        currentPlayer = ship->getPlayer();
+                        count = 1;
+                    }
 
                 }
+            }
+
+
         }
-
-
     }
+
+    for (int x = 0;  x < Settings::COLUMN_COUNT; ++x)
+    {
+        count = 0;
+        for (int y = 0; y < Settings::ROW_COUNT; ++y)
+        {
+            //Get Diagonal 1
+            std::vector<QPoint> vector1 = getShips(x,y, QVector2D(1, 1));
+            if(vector1.capacity() >=4){
+                foreach (QPoint var, vector1) {
+                    if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
+                        count++;
+                        if(count==Settings::WIN_AMMOUNT)
+                        {
+                            return currentPlayer;
+                        }
+                    }
+                    else
+                    {
+                        currentPlayer = getShip(var.x(),var.y())->getPlayer();
+                        count = 1;
+                    }
+                }
+            }
+            // Get Diagonal 2
+
+            std::vector<QPoint> vector2 = getShips(x,y, QVector2D(1, -1));
+            if(vector2.capacity() >=4){
+                foreach (QPoint var, vector2) {
+                    if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
+                        count++;
+                        if(count==Settings::WIN_AMMOUNT)
+                        {
+                            return currentPlayer;
+                        }
+                    }
+                    else
+                    {
+                        currentPlayer = getShip(var.x(),var.y())->getPlayer();
+                        count = 1;
+                    }
+                }
+            }
+        }
     }
     return Player::NONE;
 
