@@ -52,6 +52,7 @@ public:
     int getHeight() const;
     int getCellSize() const;
     std::vector<QPoint> getNeighbours(const int&, const int&);
+    void reset();
 
     /* Returns all positions of the given direction
      *

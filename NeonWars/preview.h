@@ -15,6 +15,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     Ship* fetch();
+    void reset();
 signals:
 
 public slots:

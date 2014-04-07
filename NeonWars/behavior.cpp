@@ -14,6 +14,7 @@ void  LaserBehavior::trigger(Board *board, const int &x, const int &y)
     foreach (QPoint var, vector) {
          board->remove(var.x(),var.y());
     }
+    board->remove(x,y);
 }
 
 void BombBehavior::trigger(Board *board, const int &x, const int &y)
@@ -37,6 +38,7 @@ void RocketBehavior::trigger(Board *board, const int &x, const int &y)
             board->remove(var.x(),var.y());
         }
     }
+    board->remove(x,y);
 }
 
 void PhaserBehavior::trigger(Board *board, const int &x, const int &y)
@@ -57,4 +59,5 @@ void PhaserBehavior::trigger(Board *board, const int &x, const int &y)
             board->remove(var.x(),var.y());
         }
     }
+    board->remove(x,y);
 }

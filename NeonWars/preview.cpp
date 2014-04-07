@@ -26,6 +26,14 @@ QRectF Preview::boundingRect() const
     }
 }
 
+ void Preview::reset()
+ {
+     for (int i = 0; i < Settings::PREVIEW_COUNT; ++i)
+     {
+         fetch();
+     }
+ }
+
 Ship* Preview::fetch()
 {
     update();

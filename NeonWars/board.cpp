@@ -76,11 +76,89 @@ int Board::getHeight() const
     return getCellSize() * Settings::ROW_COUNT;
 }
 
+void Board::reset()
+{
+    for (int y = 0; y < Settings::ROW_COUNT; ++y)
+    {
+        for (int x = 0; x < Settings::COLUMN_COUNT; ++x)
+        {
+            if (hasShip(x, y))
+            {
+                remove(x, y);
+            }
+        }
+    }
 
+    previewA->reset();
+    previewB->reset();
+}
 
 std::vector<QPoint> Board::getShips(const int &x, const int &y, const QVector2D &dir)
 {
-    return std::vector<QPoint>();
+    QVector2D normalized = dir;
+    std::vector<QPoint> points;
+
+    if (normalized.x() <= -1.f)
+    {
+        normalized.setX(-1.0f);
+    }
+    else if (normalized.x() >= 1.f)
+    {
+        normalized.setX(1.f);
+    }
+    else
+    {
+        normalized.setX(0);
+    }
+
+    if (normalized.y() <= -1.f)
+    {
+        normalized.setY(-1.0f);
+    }
+    else if (normalized.y() >= 1.f)
+    {
+        normalized.setY(1.f);
+    }
+    else
+    {
+        normalized.setY(0);
+    }
+
+    if (normalized.length() == 0)
+    {
+        return points;
+    }
+
+    // Direction 1
+    int localX = x, localY = y;
+
+    while ((localX - 1) >= 0 && (localX + 1) < Settings::COLUMN_COUNT &&
+           (localY - 1) >= 0 && (localY + 1) < Settings::ROW_COUNT)
+    {
+        localX += normalized.x();
+        localY += normalized.y();
+
+        if (hasShip(localX, localY))
+        {
+            points.push_back(QPoint(localX, localY));
+        }
+    }
+
+    // Direction 2
+    localX = x, localY = y;
+
+    while ((localX - 1) >= 0 && (localX + 1) < Settings::COLUMN_COUNT &&
+           (localY - 1) >= 0 && (localY + 1) < Settings::ROW_COUNT)
+    {
+        localX -= normalized.x();
+        localY -= normalized.y();
+        if (hasShip(localX, localY))
+        {
+            points.push_back(QPoint(localX, localY));
+        }
+    }
+
+    return points;
 }
 
 Ship* Board::getShip(const int &x, const int &y, Neighbour::Type type)
