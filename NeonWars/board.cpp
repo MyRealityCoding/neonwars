@@ -284,11 +284,14 @@ bool Board::remove(const int &indexX, const int &indexY)
             if (localIndexY == startY)
             {
                 _map[indexX][localIndexY]->setType(Ship::NONE);
+                _map[indexX][localIndexY]->setPlayer(Player::NONE);
             }
             else
             {
                 _map[indexX][localIndexY + 1]->setType(_map[indexX][localIndexY]->getType());
+                _map[indexX][localIndexY + 1]->setPlayer(_map[indexX][localIndexY]->getPlayer());
                 _map[indexX][localIndexY]->setType(Ship::NONE);
+                _map[indexX][localIndexY]->setPlayer(Player::NONE);
             }
 
             localIndexY--;
