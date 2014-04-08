@@ -29,11 +29,13 @@ SOURCES += main.cpp\
     board.cpp \
     preview.cpp \
     behavior.cpp \
-    arrow.cpp
+    arrow.cpp \
+    AI.cpp
 
 HEADERS  += ship.h \
     board.h \
     settings.h \
     preview.h \
     behavior.h \
-    arrow.h
+    arrow.h \
+    AI.h

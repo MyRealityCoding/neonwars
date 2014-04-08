@@ -13,6 +13,7 @@
 #include "arrow.h"
 #include "settings.h"
 #include "ship.h"
+#include "AI.h"
 #include "preview.h"
 
 namespace Neighbour {
@@ -41,9 +42,10 @@ private:
     Player::Type currentPlayer;
     Arrow arrow;
     QMediaPlayer *mediaPlayer;
+    AI *ai;
 public:
     Board(Preview*, Preview*);
-
+    virtual ~Board();
     Ship* getShip(const int &x, const int &y, Neighbour::Type);
     Ship* getShip(const int &x, const int &y);
     bool hasShip(const int &x, const int &y);

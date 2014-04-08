@@ -12,7 +12,7 @@ namespace Settings {
     static const QString APP_TITLE = "Neon Wars";
 
     // Current versionr
-    static const QString APP_VERSION = "0.0.1";
+    static const QString APP_VERSION = "0.9";
 
     // Width of the game
     static const int WINDOW_WIDTH = 640;
@@ -52,6 +52,9 @@ namespace Settings {
 
     // Number of ships in a row to win
     static const int WIN_AMMOUNT = 5;
+
+    // Number of iterations an enemy should think
+    static const int AI_ITERATIONS = 20;
 }
 
 #endif // SETTINGS_H

@@ -1,5 +1,6 @@
 #include "board.h"
 #include "settings.h"
+#include "AI.h"
 
 #include <QBrush>
 #include <QCoreApplication>
@@ -7,7 +8,8 @@
 #include <cmath>
 
 Board::Board(Preview *a, Preview *b)
-    : previewA(a), previewB(b), currentPlayer(Player::PLAYER1), mediaPlayer(NULL)
+    : previewA(a), previewB(b), currentPlayer(Player::PLAYER1), mediaPlayer(NULL),
+      ai(new SimpleAI)
 {
     mediaPlayer = new QMediaPlayer;
 
@@ -25,6 +27,11 @@ Board::Board(Preview *a, Preview *b)
 
         _rows[x] = 0;
     }
+}
+
+Board::~Board()
+{
+    delete ai;
 }
 
 void Board::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -469,6 +476,8 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
             mediaPlayer->play();
         }
     }
+
+    // TODO AI
 
 }
 
