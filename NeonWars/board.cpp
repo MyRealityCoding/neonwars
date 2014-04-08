@@ -438,7 +438,17 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
     int column = getColumn(Event->pos().x());
     Preview * prev;
-
+    if(Settings::KI_ENABLED){
+        if(this->canAdd(column))
+        {
+            this->add(previewA->fetch(), column);
+            previewA->update();
+         }
+        ai->handle(this,previewB);
+        previewB->update();
+    }
+    else
+    {
     if(this->currentPlayer == Player::PLAYER1)
     {
         prev = previewA;
@@ -459,7 +469,7 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
             currentPlayer = Player::PLAYER1;
             previewA->update();
         }
-
+    }}
         Player::Type won = this->won();
 
         if(won != Player::NONE){
@@ -475,7 +485,7 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
             mediaPlayer->setVolume(50);
             mediaPlayer->play();
         }
-    }
+
 
     // TODO AI
 

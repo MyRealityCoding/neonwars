@@ -55,6 +55,9 @@ namespace Settings {
 
     // Number of iterations an enemy should think
     static const int AI_ITERATIONS = 20;
+
+    //Switch to turn of KI
+    static const bool KI_ENABLED = false;
 }
 
 #endif // SETTINGS_H
