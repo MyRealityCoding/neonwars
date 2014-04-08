@@ -9,7 +9,7 @@
 
 Board::Board(Preview *a, Preview *b)
     : previewA(a), previewB(b), currentPlayer(Player::PLAYER1), mediaPlayer(NULL),
-      ai(new SimpleAI)
+      ai(new SimpleAI), aiMode(Settings::AI_ENABLED)
 {
     mediaPlayer = new QMediaPlayer;
 
@@ -425,6 +425,18 @@ Preview* Board::getPreview(Player::Type type)
 
     return p;
 }
+
+void Board::toggleKIMode()
+{
+    aiMode = !aiMode;
+}
+
+
+bool Board::isAIMode() const
+{
+    return aiMode;
+}
+
 bool Board::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::MouseMove)
@@ -439,7 +451,6 @@ bool Board::eventFilter(QObject *obj, QEvent *event)
 
 void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
-    std::cout << QCoreApplication::applicationFilePath().toUtf8().constData();
     int column = getColumn(Event->pos().x());
     Preview * prev;
     if(Settings::KI_ENABLED){
@@ -453,48 +464,61 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
     }
     else
     {
-    if(this->currentPlayer == Player::PLAYER1)
-    {
-        prev = previewA;
-    }
-    else
-    {
-        prev = previewB;
-    }
-    if(this->canAdd(column))
-    {
-        this->add(prev->fetch(), column);
-        if(this->currentPlayer == Player::PLAYER1){
-            currentPlayer = Player::PLAYER2;
-            previewB->update();
+        if(this->currentPlayer == Player::PLAYER1)
+        {
+            prev = previewA;
         }
         else
         {
-            currentPlayer = Player::PLAYER1;
-            previewA->update();
+            prev = previewB;
         }
-    }}
-        Player::Type won = this->won();
-
-        if(won != Player::NONE){
-            if (Settings::SOUNDS)
-            {
-                mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/victory.mp3"));
-
-                mediaPlayer->play();
-            }
-
-            this->reset();
-        }
-        else if (Settings::SOUNDS)
+        if(this->canAdd(column))
         {
+            this->add(prev->fetch(), column);
+            if(this->currentPlayer == Player::PLAYER1){
+                currentPlayer = Player::PLAYER2;
+                previewB->update();
+            }
+            else
+            {
+                currentPlayer = Player::PLAYER1;
+                previewA->update();
+            }
+        }
+    }
 
-            mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/crunch.mp3"));
+    checkWon();
+
+    if (aiMode && currentPlayer == Player::PLAYER2)
+    {
+        ai->handle(this, previewB);
+        checkWon();
+        currentPlayer = Player::PLAYER1;
+    }
+}
+
+void Board::checkWon()
+{
+
+    Player::Type won = this->won();
+
+    if(won != Player::NONE){
+        if (Settings::SOUNDS)
+        {
+            mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/victory.mp3"));
 
             mediaPlayer->play();
         }
 
+        this->reset();
+    }
+    else if (Settings::SOUNDS)
+    {
 
+        mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/crunch.mp3"));
+
+        mediaPlayer->play();
+    }
 }
 
 Player::Type Board::won()
@@ -585,7 +609,6 @@ Player::Type Board::won()
                     if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
 
                         count++;
-                        std::cout << "Player: " <<currentPlayer << " C: " << count << std::endl;
                         if(count==Settings::WIN_AMMOUNT)
                         {
                             return currentPlayer;
@@ -609,7 +632,6 @@ Player::Type Board::won()
                     {
                     if(getShip(var.x(),var.y())->getPlayer() == currentPlayer){
                         count++;
-                        std::cout << "Player: " <<currentPlayer << " C: " << count << std::endl;
                         if(count==Settings::WIN_AMMOUNT)
                         {
                             return currentPlayer;

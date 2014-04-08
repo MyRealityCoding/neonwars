@@ -58,7 +58,6 @@ void Preview::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setOpacity(Settings::PANEL_OPACITY);
 
-    std::cout << "Current player is " << _playerType << std::endl;
     if (board != NULL && board->getCurrentPlayer() == _playerType)
     {
         painter->setOpacity(1.0);

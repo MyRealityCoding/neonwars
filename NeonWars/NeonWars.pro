@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     preview.cpp \
     behavior.cpp \
     arrow.cpp \
-    AI.cpp
+    AI.cpp \
+    toggle_button.cpp
 
 HEADERS  += ship.h \
     board.h \
@@ -38,4 +39,5 @@ HEADERS  += ship.h \
     preview.h \
     behavior.h \
     arrow.h \
-    AI.h
+    AI.h \
+    toggle_button.h

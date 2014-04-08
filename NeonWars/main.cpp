@@ -9,6 +9,7 @@
 #include "settings.h"
 #include "board.h"
 #include "preview.h"
+#include "toggle_button.h"
 
 int main(int argc, char *argv[])
 {\
@@ -39,8 +40,10 @@ int main(int argc, char *argv[])
     scene.addItem(&previewPlayer1);
     scene.addItem(&previewPlayer2);
 
-    a.installEventFilter(&board);
+    ToggleButton *button = new ToggleButton(&board);
+    scene.addItem(button);
 
+    a.installEventFilter(&board);
     QMediaPlayer *p = new QMediaPlayer;
 
     if (Settings::SOUNDS)

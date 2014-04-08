@@ -12,5 +12,7 @@
         <file alias="CRUNCH">Resources/crunch.mp3</file>
         <file alias="EXPLOSION">Resources/explosion.mp3</file>
         <file alias="VICTORY">Resources/victory.mp3</file>
+        <file alias="BTN_AI">Resources/btn-ai.png</file>
+        <file alias="BTN_PVP">Resources/btn-pvp.png</file>
     </qresource>
 </RCC>

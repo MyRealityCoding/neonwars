@@ -57,6 +57,9 @@ namespace Settings {
     static const int WIN_AMMOUNT = 5;
 
     // Number of iterations an enemy should think
+    static const bool AI_ENABLED = true;
+
+    // Number of iterations an enemy should think
     static const int AI_ITERATIONS = 20;
 
     //Switch to turn of KI

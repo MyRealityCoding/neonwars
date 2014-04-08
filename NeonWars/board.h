@@ -43,6 +43,7 @@ private:
     Arrow arrow;
     QMediaPlayer *mediaPlayer;
     AI *ai;
+    bool aiMode;
 public:
     Board(Preview*, Preview*);
     virtual ~Board();
@@ -64,7 +65,8 @@ public:
     std::vector<QPoint> getNeighbours(const int&, const int&);
     void reset();
     Player::Type won();
-
+    void toggleKIMode();
+    bool isAIMode() const;
     bool eventFilter(QObject *obj, QEvent *event);
 
     /* Returns all positions of the given direction
@@ -98,6 +100,7 @@ private:
     bool validIndexX(const int&) const;
     bool validIndexY(const int&) const;
     bool removeByColumn(const int&);
+    void checkWon();
 };
 
 #endif // BOARD_H
