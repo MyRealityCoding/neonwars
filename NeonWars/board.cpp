@@ -439,6 +439,7 @@ bool Board::eventFilter(QObject *obj, QEvent *event)
 
 void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
 {
+    std::cout << QCoreApplication::applicationFilePath().toUtf8().constData();
     int column = getColumn(Event->pos().x());
     Preview * prev;
     if(Settings::KI_ENABLED){
@@ -479,6 +480,7 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
             if (Settings::SOUNDS)
             {
                 mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/victory.mp3"));
+
                 mediaPlayer->play();
             }
 
@@ -486,12 +488,12 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
         }
         else if (Settings::SOUNDS)
         {
+
             mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/crunch.mp3"));
+
             mediaPlayer->play();
         }
 
-
-    // TODO AI
 
 }
 

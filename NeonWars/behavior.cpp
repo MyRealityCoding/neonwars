@@ -25,9 +25,9 @@ void  LaserBehavior::trigger(Board *board, const int &x, const int &y)
     board->remove(x,y);
 
     if (Settings::SOUNDS)
-    {
-        mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-        mediaPlayer->play();
+    {   QMediaPlayer *mediaPlayer5 =  new QMediaPlayer;
+        mediaPlayer5->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
+        mediaPlayer5->play();
     }
 }
 
@@ -43,9 +43,9 @@ void BombBehavior::trigger(Board *board, const int &x, const int &y)
     board->remove(x,y);
 
     if (Settings::SOUNDS)
-    {
-        mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-        mediaPlayer->play();
+    {   QMediaPlayer *mediaPlayer2 =  new QMediaPlayer;
+        mediaPlayer2->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
+        mediaPlayer2->play();
     }
 }
 
@@ -62,8 +62,10 @@ void RocketBehavior::trigger(Board *board, const int &x, const int &y)
 
     if (Settings::SOUNDS)
     {
-        mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-        mediaPlayer->play();
+        QMediaPlayer *mediaPlayer3 =  new QMediaPlayer;
+        mediaPlayer3->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
+        mediaPlayer3->play();
+
     }
 }
 
@@ -90,7 +92,9 @@ void PhaserBehavior::trigger(Board *board, const int &x, const int &y)
 
     if (Settings::SOUNDS)
     {
-        mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
-        mediaPlayer->play();
+        QMediaPlayer *mediaPlayer4 =  new QMediaPlayer;
+        mediaPlayer4->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/explosion.mp3"));
+        mediaPlayer4->play();
+
     }
 }

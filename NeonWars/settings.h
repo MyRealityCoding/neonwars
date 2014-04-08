@@ -21,7 +21,7 @@ namespace Settings {
     static const int WINDOW_HEIGHT = 480;
 
     // Sounds enabled?
-    static const bool SOUNDS = false;
+    static const bool SOUNDS = true;
 
     // Number of future ships
     static const int PREVIEW_COUNT = 4;
