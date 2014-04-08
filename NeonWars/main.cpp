@@ -43,9 +43,12 @@ int main(int argc, char *argv[])
 
     QMediaPlayer *p = new QMediaPlayer;
 
-    p->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/theme.mp3"));
-    p->setVolume(50);
-    p->play();
+    if (Settings::SOUNDS)
+    {
+        p->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/theme.mp3"));
+        p->play();
+    }
+
     view.show();
     return a.exec();
 }

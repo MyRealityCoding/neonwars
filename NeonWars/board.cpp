@@ -476,16 +476,17 @@ void Board::mousePressEvent(QGraphicsSceneMouseEvent * Event)
         Player::Type won = this->won();
 
         if(won != Player::NONE){
-            mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/victory.mp3"));
-            mediaPlayer->setVolume(50);
-            mediaPlayer->play();
+            if (Settings::SOUNDS)
+            {
+                mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/victory.mp3"));
+                mediaPlayer->play();
+            }
 
             this->reset();
         }
-        else
+        else if (Settings::SOUNDS)
         {
             mediaPlayer->setMedia(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/Resources/crunch.mp3"));
-            mediaPlayer->setVolume(50);
             mediaPlayer->play();
         }
 
